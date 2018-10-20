@@ -13,6 +13,7 @@
 		7F60C8A4217BBF1A00885AD8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F60C8A2217BBF1A00885AD8 /* Main.storyboard */; };
 		7F60C8A6217BBF1C00885AD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F60C8A5217BBF1C00885AD8 /* Assets.xcassets */; };
 		7F60C8A9217BBF1C00885AD8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F60C8A7217BBF1C00885AD8 /* LaunchScreen.storyboard */; };
+		7F60C8B1217BCCBD00885AD8 /* CityAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F60C8B0217BCCBD00885AD8 /* CityAddViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		7F60C8A5217BBF1C00885AD8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7F60C8A8217BBF1C00885AD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7F60C8AA217BBF1C00885AD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7F60C8B0217BCCBD00885AD8 /* CityAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityAddViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				7F60C8A5217BBF1C00885AD8 /* Assets.xcassets */,
 				7F60C8A7217BBF1C00885AD8 /* LaunchScreen.storyboard */,
 				7F60C8AA217BBF1C00885AD8 /* Info.plist */,
+				7F60C8B0217BCCBD00885AD8 /* CityAddViewController.swift */,
 			);
 			path = weathero2;
 			sourceTree = "<group>";
@@ -141,6 +144,7 @@
 				7F60C8A1217BBF1A00885AD8 /* DetailViewController.swift in Sources */,
 				7F60C89F217BBF1A00885AD8 /* MasterViewController.swift in Sources */,
 				7F60C89D217BBF1A00885AD8 /* AppDelegate.swift in Sources */,
+				7F60C8B1217BCCBD00885AD8 /* CityAddViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
