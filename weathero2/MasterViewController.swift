@@ -95,9 +95,10 @@ class MasterViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
-                //let object = objects[indexPath.row].location
+                let forecast = forecasts[indexPath.row]
                 let controller = (segue.destination as! UINavigationController).topViewController as! ViewController
-                //controller.detailItem = object
+                controller.weatherList = forecast.weatherList
+                controller.city = forecast.city
                 controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }

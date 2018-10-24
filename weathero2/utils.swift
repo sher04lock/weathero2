@@ -18,7 +18,8 @@ class Utils {
     
     static func formatDate(_ date: Date) -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "EEEE, MMM d, yyyy"
+        formatter.dateFormat = DISPLAY_DATE_FORMAT
+        print(date)
         return formatter.string(from: date)
     }
     

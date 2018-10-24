@@ -11,10 +11,11 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var forecasts: [WeatherModel] = [];
-    var currentWeatherIndex = 0;
+    var weatherList: [WeatherModel] = []
+    var currentWeatherIndex = 0
+    var city: String = ""
     
-    @IBOutlet weak var authorNameLabel: UILabel!
+    @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var weatherImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -30,9 +31,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        authorNameLabel.text = "Bartłomiej Gródek"
-        initialSetup()
-        getForecasts(cityCode: WARSAW_WOEID);
+        initialSetup()      
+        updateView()
     }
     
     func initialSetup() {
@@ -40,78 +40,41 @@ class ViewController: UIViewController {
         nextButton.isEnabled = false
     }
     
-    func getForecasts(cityCode: String = WARSAW_WOEID) {
-        let url = URL(string: "https://www.metaweather.com/api/location/\(cityCode)")!
-        
-        let session = URLSession.shared
-        let request = URLRequest(url: url)
-        
-        let task = session.dataTask(with: request as URLRequest, completionHandler: onDataFetched)
-        
-        task.resume()
-    }
-    
-    func onDataFetched(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void {
-        guard let data = data,
-            error == nil else {
-                return
-        }
-        
-        saveForecasts(data: data)
-        
-        DispatchQueue.main.async {
-            self.updateView()
-        }
-    }
-    
-    func saveForecasts(data: Data) {
-        do {
-            if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
-                if let weathers = json["consolidated_weather"] as? [[String: Any]] {
-                    for case let weather in weathers {
-                        if let weatherModel = WeatherModel(json: weather) {
-                            self.forecasts.append(weatherModel)
-                        }
-                    }
-                }
-            }
-        } catch let error {
-            print(error.localizedDescription)
-        }
-    }
-    
     func updateView() {
-        if (self.forecasts.count == 0) {
+        if (self.weatherList.count == 0) {
             return;
         }
         
-        let forecast = self.forecasts[currentWeatherIndex]
+        let forecast = self.weatherList[currentWeatherIndex]
+        
+        cityLabel.text = self.city
         
         setForecastDate(forecast.date)
         setImage(forecast.weatherTypeAbbreviaton)
         
         weatherTypeField.text = forecast.weatherType
-        lowestTemp.text = formatNumber(forecast.minTemp) + "°C"
-        highestTemp.text = formatNumber(forecast.maxTemp) + "°C"
-        wind.text = "\(formatNumber(forecast.wind.speed)) km/h \(forecast.wind.direction)"
-        airPressure.text = "\(formatNumber(forecast.airPressure)) hPa"
-        humidity.text = "\(formatNumber(forecast.humidity))%"
+        lowestTemp.text = Utils.formatNumber(forecast.minTemp) + "°C"
+        highestTemp.text = Utils.formatNumber(forecast.maxTemp) + "°C"
+        wind.text = "\(Utils.formatNumber(forecast.wind.speed)) km/h \(forecast.wind.direction)"
+        airPressure.text = "\(Utils.formatNumber(forecast.airPressure)) hPa"
+        humidity.text = "\(Utils.formatNumber(forecast.humidity))%"
         
         updateNavigationButtonsStates()
     }
     
     func updateNavigationButtonsStates() {
         previousButton.isEnabled = currentWeatherIndex > 0
-        nextButton.isEnabled = currentWeatherIndex + 1 < forecasts.count
+        nextButton.isEnabled = currentWeatherIndex + 1 < weatherList.count
     }
     
     func setForecastDate(_ date: Date?) -> Void {
+        print (date!)
         if (date == nil) {
             dateLabel.text = ""
             return
         }
-        
-        dateLabel.text = formatDate(date!)
+        let formatted = Utils.formatDate(date!)
+        dateLabel!.text = formatted
     }
     
     func setImage(_ weatherState: String?) -> Void {
@@ -120,19 +83,6 @@ class ViewController: UIViewController {
         }
     }
     
-    func formatDate(_ date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "EEEE, MMM d, yyyy"
-        return formatter.string(from: date)
-    }
-    
-    func formatNumber(_ number: Double?) -> String {
-        if (number == nil) {
-            return "-"
-        }
-        
-        return NSString(format: "%.1f", number!) as String
-    }
     
     @IBAction func goToPrevious(_ sender: Any) {
         currentWeatherIndex = currentWeatherIndex - 1
