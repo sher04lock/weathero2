@@ -8,60 +8,10 @@
 
 import UIKit
 
-let INCOMING_DATE_FORMAT = "yyyy-MM-dd";
-let DISPLAY_DATE_FORMAT = "EEEE MMM d, YYYY"
-let WARSAW_WOEID = "523920"
-
-
-func parseDate(dateString: String, dateFormat: String = "yyyy-MM-dd") -> Date? {
-    let formatter = DateFormatter()
-    formatter.dateFormat = dateFormat
-    return formatter.date(from: dateString)
-}
-
-
-struct Forecast {
-    let date: Date?
-    let weatherType: String
-    let weatherTypeAbbreviaton: String
-    let minTemp: Double
-    let maxTemp: Double
-    let wind: (speed: Double, direction: String)
-    let airPressure: Double
-    let humidity: Double
-}
-
-
-extension Forecast {
-    init?(json: [String: Any]) {
-        guard let date = json["applicable_date"] as? String,
-            let weatherType = json["weather_state_name"] as? String,
-            let weatherTypeAbbreviation = json["weather_state_abbr"] as? String,
-            let minTemp = json["min_temp"] as? Double,
-            let maxTemp = json["max_temp"] as? Double,
-            let windSpeed = json["wind_speed"] as? Double,
-            let windDirection = json["wind_direction_compass"] as? String,
-            let airPressure = json["air_pressure"] as? Double,
-            let humidity = json["humidity"] as? Double
-            else {
-                return nil
-        }
-        
-        self.date = parseDate(dateString: date)
-        self.weatherType = weatherType
-        self.weatherTypeAbbreviaton = weatherTypeAbbreviation
-        self.minTemp = minTemp
-        self.maxTemp = maxTemp
-        self.wind = (windSpeed, windDirection)
-        self.humidity = humidity
-        self.airPressure = airPressure
-        
-    }
-}
 
 class ViewController: UIViewController {
     
-    var forecasts: [Forecast] = [];
+    var forecasts: [WeatherModel] = [];
     var currentWeatherIndex = 0;
     
     @IBOutlet weak var authorNameLabel: UILabel!
@@ -82,7 +32,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         authorNameLabel.text = "Bartłomiej Gródek"
         initialSetup()
-        getWeatherData(cityCode: WARSAW_WOEID);
+        getForecasts(cityCode: WARSAW_WOEID);
     }
     
     func initialSetup() {
@@ -90,7 +40,7 @@ class ViewController: UIViewController {
         nextButton.isEnabled = false
     }
     
-    func getWeatherData(cityCode: String = WARSAW_WOEID) {
+    func getForecasts(cityCode: String = WARSAW_WOEID) {
         let url = URL(string: "https://www.metaweather.com/api/location/\(cityCode)")!
         
         let session = URLSession.shared
@@ -119,8 +69,8 @@ class ViewController: UIViewController {
             if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
                 if let weathers = json["consolidated_weather"] as? [[String: Any]] {
                     for case let weather in weathers {
-                        if let forecast = Forecast(json: weather) {
-                            self.forecasts.append(forecast)
+                        if let weatherModel = WeatherModel(json: weather) {
+                            self.forecasts.append(weatherModel)
                         }
                     }
                 }

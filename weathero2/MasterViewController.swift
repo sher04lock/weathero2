@@ -8,19 +8,17 @@
 
 import UIKit
 
-struct ForecastOverview {
-    var location: String;
-    var weatherType: String;
-    var currentTemp: Double;
-}
 
 class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
-    var objects = [ForecastOverview]()
+    var objects = [ForecastModel]()
+    var forecasts: [ForecastModel] = []
+    var savedCities: [String] = [WARSAW_WOEID, DUBLIN_WOEID, BERLIN_WOEID]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.loadForecasts()
         // Do any additional setup after loading the view, typically from a nib.
         navigationItem.leftBarButtonItem = editButtonItem
 
@@ -36,6 +34,54 @@ class MasterViewController: UITableViewController {
         clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
         super.viewWillAppear(animated)
     }
+    
+    func loadForecasts() {
+        let forecastService = ForecastService()
+        
+        for city in self.savedCities {
+            forecastService.getForecast(cityCode: city, callback: onDataFetched)
+        }
+    }
+    
+    func onDataFetched(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void {
+        guard let data = data,
+            error == nil else {
+                return
+        }
+        
+        saveForecasts(data: data)
+        
+        DispatchQueue.main.async {
+            self.updateView()
+        }
+    }
+    
+    func saveForecasts(data: Data) {
+        print("saving forecasts")
+        var weatherList = [WeatherModel]()
+        do {
+            if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
+                if let weathers = json["consolidated_weather"] as? [[String: Any]] {
+                    for case let weather in weathers {
+                        if let weatherModel = WeatherModel(json: weather) {
+                            weatherList.append(weatherModel)
+                        }
+                    }
+                }
+                if let city = json["title"] as? String {
+                    self.forecasts.append(ForecastModel(city: city, weatherList: weatherList))
+                    print("forecast saved")
+                }
+            }
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func updateView() {
+        print("updating view")
+        tableView.reloadData()
+    }
 
     @objc
     func insertNewObject(_ sender: Any) {
@@ -49,9 +95,9 @@ class MasterViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
-                let object = objects[indexPath.row].location
-                let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
-                controller.detailItem = object
+                //let object = objects[indexPath.row].location
+                let controller = (segue.destination as! UINavigationController).topViewController as! ViewController
+                //controller.detailItem = object
                 controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
@@ -65,16 +111,16 @@ class MasterViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return objects.count
+        return forecasts.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
-        let object = objects[indexPath.row]
-        cell.textLabel!.text = object.location
-        cell.detailTextLabel!.text = NSString(format: "%.1f", object.currentTemp) as String
-        cell.imageView!.image = UIImage(named: object.weatherType)
+        let cityEntry = forecasts[indexPath.row]
+        cell.textLabel!.text = cityEntry.city
+        cell.detailTextLabel!.text = Utils.formatNumber(cityEntry.weatherList[0].currentTemp)
+        cell.imageView!.image = UIImage(named: cityEntry.weatherList[0].weatherTypeAbbreviaton)
         
         return cell
     }
@@ -100,8 +146,8 @@ class MasterViewController: UITableViewController {
     @IBAction func done(segue: UIStoryboardSegue) {
         let cityAddVC = segue.source as! CityAddViewController
       let newCity = cityAddVC.city
-        let newForecast: ForecastOverview = ForecastOverview(location: newCity, weatherType: "c", currentTemp: 12.2)
-        objects.insert(newForecast, at: 0)
+        //let newForecast: ForecastModel = ForecastModel(location: newCity, weatherType: "c", currentTemp: 12.2)
+        //objects.insert(newForecast, at: 0)
         tableView.reloadData()
     }
 
