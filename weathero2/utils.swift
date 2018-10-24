@@ -8,9 +8,9 @@
 
 import Foundation
 
-let INCOMING_DATE_FORMAT = "yyyy-MM-dd";
+let INCOMING_DATE_FORMAT = "yyyy-MM-dd"
 let DISPLAY_DATE_FORMAT = "EEEE MMM d, YYYY"
-
+let CELCIUS_DEGREE = "°C"
 
 
 

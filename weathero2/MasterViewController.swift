@@ -120,7 +120,7 @@ class MasterViewController: UITableViewController {
 
         let cityEntry = forecasts[indexPath.row]
         cell.textLabel!.text = cityEntry.city
-        cell.detailTextLabel!.text = Utils.formatNumber(cityEntry.weatherList[0].currentTemp)
+        cell.detailTextLabel!.text = Utils.formatNumber(cityEntry.weatherList[0].currentTemp) + CELCIUS_DEGREE
         cell.imageView!.image = UIImage(named: cityEntry.weatherList[0].weatherTypeAbbreviaton)
         
         return cell
@@ -133,7 +133,7 @@ class MasterViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            objects.remove(at: indexPath.row)
+            forecasts.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.

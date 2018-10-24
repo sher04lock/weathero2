@@ -205,14 +205,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h2o-vd-8FY" userLabel="City Label">
-                                <rect key="frame" x="172.5" y="64" width="30.5" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="dDs-If-d1F">
-                                <rect key="frame" x="18.5" y="94.5" width="338" height="290.5"/>
+                                <rect key="frame" x="18.5" y="79" width="338" height="290.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TZ8-s9-7Rz">
                                         <rect key="frame" x="152.5" y="0.0" width="33.5" height="19.5"/>
@@ -361,22 +355,18 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="dDs-If-d1F" firstAttribute="top" secondItem="h2o-vd-8FY" secondAttribute="bottom" constant="10" id="FYy-ts-4dU"/>
                             <constraint firstItem="dDs-If-d1F" firstAttribute="centerX" secondItem="h6Z-1p-FvQ" secondAttribute="centerX" id="PmR-Sf-Wqg"/>
-                            <constraint firstItem="h2o-vd-8FY" firstAttribute="top" secondItem="mBg-4r-MVn" secondAttribute="top" id="e73-hj-3pp"/>
-                            <constraint firstItem="h2o-vd-8FY" firstAttribute="centerX" secondItem="h6Z-1p-FvQ" secondAttribute="centerX" id="qzE-a1-9jD"/>
+                            <constraint firstItem="dDs-If-d1F" firstAttribute="top" secondItem="mBg-4r-MVn" secondAttribute="top" constant="15" id="Zer-9S-YgB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mBg-4r-MVn"/>
                     </view>
                     <navigationItem key="navigationItem" id="oWA-Gw-c9m"/>
                     <connections>
                         <outlet property="airPressure" destination="MUZ-qx-XH8" id="0w7-wC-Nig"/>
-                        <outlet property="cityLabel" destination="h2o-vd-8FY" id="rsZ-XG-Sfo"/>
                         <outlet property="dateLabel" destination="TZ8-s9-7Rz" id="9vl-UO-u6I"/>
                         <outlet property="highestTemp" destination="Z1S-wb-Rd6" id="UlS-L7-zao"/>
                         <outlet property="humidity" destination="8lh-nb-FjO" id="mzd-VM-f3z"/>
                         <outlet property="lowestTemp" destination="Ghg-Pe-itO" id="ldk-P4-M1q"/>
-                        <outlet property="nameLabel" destination="h2o-vd-8FY" id="T58-eq-TVm"/>
                         <outlet property="nextButton" destination="Nrb-CP-31C" id="NmA-QV-ZgO"/>
                         <outlet property="previousButton" destination="jM7-qD-b46" id="1Wu-ke-z51"/>
                         <outlet property="weatherImage" destination="bc0-S3-MYL" id="0YS-H1-KYE"/>

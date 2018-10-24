@@ -15,7 +15,6 @@ class ViewController: UIViewController {
     var currentWeatherIndex = 0
     var city: String = ""
     
-    @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var weatherImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -47,14 +46,14 @@ class ViewController: UIViewController {
         
         let forecast = self.weatherList[currentWeatherIndex]
         
-        cityLabel.text = self.city
+        self.navigationItem.title = city
         
         setForecastDate(forecast.date)
         setImage(forecast.weatherTypeAbbreviaton)
         
         weatherTypeField.text = forecast.weatherType
-        lowestTemp.text = Utils.formatNumber(forecast.minTemp) + "°C"
-        highestTemp.text = Utils.formatNumber(forecast.maxTemp) + "°C"
+        lowestTemp.text = Utils.formatNumber(forecast.minTemp) + CELCIUS_DEGREE
+        highestTemp.text = Utils.formatNumber(forecast.maxTemp) + CELCIUS_DEGREE
         wind.text = "\(Utils.formatNumber(forecast.wind.speed)) km/h \(forecast.wind.direction)"
         airPressure.text = "\(Utils.formatNumber(forecast.airPressure)) hPa"
         humidity.text = "\(Utils.formatNumber(forecast.humidity))%"
