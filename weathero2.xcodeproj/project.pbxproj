@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F39E8522180E7DC0077EB65 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F39E8512180E7DC0077EB65 /* ViewController.swift */; };
 		7F60C89D217BBF1A00885AD8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F60C89C217BBF1A00885AD8 /* AppDelegate.swift */; };
 		7F60C89F217BBF1A00885AD8 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F60C89E217BBF1A00885AD8 /* MasterViewController.swift */; };
 		7F60C8A1217BBF1A00885AD8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F60C8A0217BBF1A00885AD8 /* DetailViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7F39E8512180E7DC0077EB65 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7F60C899217BBF1A00885AD8 /* weathero2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = weathero2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F60C89C217BBF1A00885AD8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7F60C89E217BBF1A00885AD8 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 				7F60C89C217BBF1A00885AD8 /* AppDelegate.swift */,
 				7F60C89E217BBF1A00885AD8 /* MasterViewController.swift */,
 				7F60C8A0217BBF1A00885AD8 /* DetailViewController.swift */,
+				7F39E8512180E7DC0077EB65 /* ViewController.swift */,
 				7F60C8A2217BBF1A00885AD8 /* Main.storyboard */,
 				7F60C8A5217BBF1C00885AD8 /* Assets.xcassets */,
 				7F60C8A7217BBF1C00885AD8 /* LaunchScreen.storyboard */,
@@ -141,6 +144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F39E8522180E7DC0077EB65 /* ViewController.swift in Sources */,
 				7F60C8A1217BBF1A00885AD8 /* DetailViewController.swift in Sources */,
 				7F60C89F217BBF1A00885AD8 /* MasterViewController.swift in Sources */,
 				7F60C89D217BBF1A00885AD8 /* AppDelegate.swift in Sources */,

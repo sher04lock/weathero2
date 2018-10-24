@@ -15,11 +15,11 @@ class DetailViewController: UIViewController {
 
     func configureView() {
         // Update the user interface for the detail item.
-        if let detail = detailItem {
-            if let label = detailDescriptionLabel {
-                label.text = detail.description
-            }
-        }
+        //if let detail = detailItem {
+        //    if let label = detailDescriptionLabel {
+        //        label.text = detail.description
+         //   }
+        //}
     }
 
     override func viewDidLoad() {
@@ -28,7 +28,7 @@ class DetailViewController: UIViewController {
         configureView()
     }
 
-    var detailItem: NSDate? {
+    var detailItem: String? {
         didSet {
             // Update the view.
             configureView()

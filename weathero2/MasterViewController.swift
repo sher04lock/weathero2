@@ -8,12 +8,17 @@
 
 import UIKit
 
+struct ForecastOverview {
+    var location: String;
+    var weatherType: String;
+    var currentTemp: Double;
+}
+
 class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
-    var objects = [Any]()
-
-
+    var objects = [ForecastOverview]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -34,7 +39,7 @@ class MasterViewController: UITableViewController {
 
     @objc
     func insertNewObject(_ sender: Any) {
-        objects.insert(NSDate(), at: 0)
+        //objects.insert(NSDate(), at: 0)
         let indexPath = IndexPath(row: 0, section: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
     }
@@ -44,7 +49,7 @@ class MasterViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
-                let object = objects[indexPath.row] as! NSDate
+                let object = objects[indexPath.row].location
                 let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
                 controller.detailItem = object
                 controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
@@ -66,8 +71,11 @@ class MasterViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
-        let object = objects[indexPath.row] as! String
-        cell.textLabel!.text = object
+        let object = objects[indexPath.row]
+        cell.textLabel!.text = object.location
+        cell.detailTextLabel!.text = NSString(format: "%.1f", object.currentTemp) as String
+        cell.imageView!.image = UIImage(named: object.weatherType)
+        
         return cell
     }
 
@@ -92,7 +100,8 @@ class MasterViewController: UITableViewController {
     @IBAction func done(segue: UIStoryboardSegue) {
         let cityAddVC = segue.source as! CityAddViewController
       let newCity = cityAddVC.city
-        objects.insert(newCity, at: 0)
+        let newForecast: ForecastOverview = ForecastOverview(location: newCity, weatherType: "c", currentTemp: 12.2)
+        objects.insert(newForecast, at: 0)
         tableView.reloadData()
     }
 
