@@ -50,3 +50,28 @@ extension WeatherModel {
         self.airPressure = airPressure
     }
 }
+
+struct CityModel {
+    let name: String
+    let id: Int
+    let latt_long: String
+    
+    init?(json: [String: Any]) {
+        print(json)
+        guard let name = json["title"] as? String,
+            let id = json["woeid"] as? Int,
+            let latt_long = json["latt_long"] as? String
+            else {
+                return nil
+        }
+        self.name = name
+        self.id = id
+        self.latt_long = latt_long
+    }
+    
+    init(name: String) {
+        self.name = name
+        self.id = 0
+        self.latt_long = ""
+    }
+}

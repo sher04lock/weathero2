@@ -8,15 +8,19 @@
 
 import UIKit
 
-class CityAddViewController: UIViewController {
+class CityAddViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var city: String = ""
+    var foundCities: [CityModel] = [CityModel(name: "Dublin"), CityModel(name: "Berlin"), CityModel(name:"Warsaw")]
+    var selectedCities: [String] = []
     
     @IBOutlet weak var cityName: UITextField!
     @IBOutlet weak var searchButton: UIButton!
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.tableFooterView = UIView(frame: .zero)
         searchButton.layer.cornerRadius = 5.0
 
         // Do any additional setup after loading the view.
@@ -31,6 +35,73 @@ class CityAddViewController: UIViewController {
 
     @IBAction func onSearchButtonClick(_ sender: UIButton) {
         print(self.cityName.text!)
+        let forecastService = ForecastService()
+        forecastService.searchCity(query: self.cityName.text!, callback: onDataFetched)
+    }
+    
+    func onDataFetched(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void {
+        guard let data = data,
+            error == nil else {
+                return
+        }
+        
+        saveFoundCities(data: data)
+        
+        DispatchQueue.main.async {
+            self.updateView()
+        }
+    }
+    
+    func saveFoundCities(data: Data) {
+        do {
+            if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [[String: Any]] {
+
+                for case let cityJSON in json {
+
+                    if let foundCity = CityModel(json: cityJSON) {
+                        print("adding city \(foundCity.name)")
+                        self.foundCities.append(foundCity)
+                    }
+                }
+                print ("found cities saved")
+                print(foundCities)
+            }
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func updateView() {
+        tableView.reloadData()
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cityEntry = foundCities[indexPath.row].name
+        cell.textLabel!.text = cityEntry
+        
+        return cell
+
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.foundCities.count
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+                let cell = tableView.cellForRow(at: indexPath)
+        if cell?.accessoryType == .checkmark {
+            print("deselecting \(foundCities[indexPath.row])")
+
+           cell?.accessoryType = .none
+            selectedCities = selectedCities.filter {$0 != foundCities[indexPath.row].name}
+        } else {
+            print("selecting \(foundCities[indexPath.row])")
+            cell?.accessoryType = .checkmark
+            selectedCities.append(foundCities[indexPath.row].name)
+        }
+        
+        print("selectedRows: \(selectedCities)")
     }
     
     /*

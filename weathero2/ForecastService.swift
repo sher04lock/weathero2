@@ -15,20 +15,16 @@ class ForecastService {
     
     func getForecast(cityCode: String = WARSAW_WOEID, callback: @escaping (Data?, URLResponse?, Error?) -> Void) {
         print("Downloading forecast for \(cityCode)")
-        let url = URL(string: "https://www.metaweather.com/api/location/\(cityCode)")!
-        
-        let session = URLSession.shared
-        let request = URLRequest(url: url)
-        
-        let task = session.dataTask(with: request as URLRequest, completionHandler: callback)
-        
-        task.resume()
+        self.makeRequest(urlString: "https://www.metaweather.com/api/location/\(cityCode)", callback: callback)
     }
     
     func searchCity(query: String, callback: @escaping (Data?, URLResponse?, Error?) -> Void) {
         print("Looking for city matching \(query)")
-        let url = URL(string: "https://www.metaweather.com/api/location/search/?query=\(query)")!
-        
+        self.makeRequest(urlString: "https://www.metaweather.com/api/location/search/?query=\(query)", callback: callback)
+    }
+    
+    private func makeRequest(urlString: String, callback: @escaping (Data?, URLResponse?, Error?) -> Void) {
+        let url = URL(string: urlString)!
         let session = URLSession.shared
         let request = URLRequest(url: url)
         

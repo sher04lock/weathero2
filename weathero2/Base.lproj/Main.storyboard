@@ -131,6 +131,7 @@
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
+                <exit id="mIG-TW-1wW" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="709" y="-630"/>
         </scene>
@@ -179,52 +180,28 @@
                                 <rect key="frame" x="0.0" y="327.5" width="375" height="339.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="uba-DY-IE5">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="Hf6-gd-CUp">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uba-DY-IE5" id="NXr-8c-Ej0">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="cbX-iB-Rs0">
-                                        <rect key="frame" x="0.0" y="72" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cbX-iB-Rs0" id="Vog-KJ-Ige">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hf6-gd-CUp" id="5OF-6X-Hzs">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="A5U-v2-DqB" id="1NX-QI-YK6"/>
+                                    <outlet property="delegate" destination="A5U-v2-DqB" id="fcr-ZH-Thn"/>
+                                </connections>
                             </tableView>
-                            <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8bj-hv-vQO">
-                                <rect key="frame" x="0.0" y="79" width="375" height="44"/>
-                                <items>
-                                    <navigationItem title="Add city" id="Nxq-S2-opG">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="rWL-7w-G1W">
-                                            <connections>
-                                                <segue destination="B6M-Ra-Gsi" kind="unwind" identifier="cancelSegue" unwindAction="cancelWithSegue:" id="grp-bD-Z6s"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="nje-Xd-pLH">
-                                            <connections>
-                                                <segue destination="B6M-Ra-Gsi" kind="unwind" identifier="doneSegue" unwindAction="doneWithSegue:" id="aKt-da-R2O"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <accessibility key="accessibilityConfiguration" label="Add city"/>
                         <constraints>
-                            <constraint firstItem="8bj-hv-vQO" firstAttribute="top" secondItem="kVk-xf-doC" secondAttribute="top" id="04r-vs-faa"/>
                             <constraint firstItem="8La-oN-MKj" firstAttribute="leading" secondItem="kVk-xf-doC" secondAttribute="leading" constant="140" id="3Qw-wI-pmg"/>
                             <constraint firstItem="kVk-xf-doC" firstAttribute="trailing" secondItem="bFv-D0-L5K" secondAttribute="trailing" constant="40" id="8b2-yJ-jJZ"/>
-                            <constraint firstItem="8bj-hv-vQO" firstAttribute="leading" secondItem="kVk-xf-doC" secondAttribute="leading" id="Bnf-VT-nIN"/>
                             <constraint firstItem="8La-oN-MKj" firstAttribute="top" secondItem="bFv-D0-L5K" secondAttribute="bottom" constant="8" id="D51-bR-xmz"/>
                             <constraint firstItem="kVk-xf-doC" firstAttribute="trailing" secondItem="5Vf-TR-6Vd" secondAttribute="trailing" id="N3c-A3-sad"/>
-                            <constraint firstAttribute="trailing" secondItem="8bj-hv-vQO" secondAttribute="trailing" id="RAw-wC-bS3"/>
                             <constraint firstItem="bFv-D0-L5K" firstAttribute="top" secondItem="M5n-Dg-TXF" secondAttribute="topMargin" constant="150" id="Vd6-Ob-VmD"/>
                             <constraint firstItem="kVk-xf-doC" firstAttribute="trailing" secondItem="8La-oN-MKj" secondAttribute="trailing" constant="140" id="bPq-0A-R0C"/>
                             <constraint firstItem="bFv-D0-L5K" firstAttribute="centerX" secondItem="M5n-Dg-TXF" secondAttribute="centerX" id="bhB-UT-P8O"/>
@@ -238,15 +215,19 @@
                         <viewLayoutGuide key="safeArea" id="kVk-xf-doC"/>
                     </view>
                     <navigationItem key="navigationItem" title="Add city" id="PBf-7k-DKR">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="ViG-rR-OSL"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="ViG-rR-OSL">
+                            <connections>
+                                <segue destination="mIG-TW-1wW" kind="unwind" unwindAction="doneWithSegue:" id="VQg-8V-2s3"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="cityName" destination="0Qn-R3-4wz" id="UcG-pe-Fsn"/>
                         <outlet property="searchButton" destination="1hp-ET-dHT" id="1iG-Mm-IlW"/>
+                        <outlet property="tableView" destination="5Vf-TR-6Vd" id="Gwf-AB-5qN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7gq-4M-zj2" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="B6M-Ra-Gsi" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1412" y="-638.2308845577212"/>
         </scene>
