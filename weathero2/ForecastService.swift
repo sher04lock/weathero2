@@ -24,4 +24,16 @@ class ForecastService {
         
         task.resume()
     }
+    
+    func searchCity(query: String, callback: @escaping (Data?, URLResponse?, Error?) -> Void) {
+        print("Looking for city matching \(query)")
+        let url = URL(string: "https://www.metaweather.com/api/location/search/?query=\(query)")!
+        
+        let session = URLSession.shared
+        let request = URLRequest(url: url)
+        
+        let task = session.dataTask(with: request as URLRequest, completionHandler: callback)
+        
+        task.resume()
+    }
 }

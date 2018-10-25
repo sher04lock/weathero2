@@ -140,6 +140,9 @@ class MasterViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
     @IBAction func cancel(segue: UIStoryboardSegue) {
     }
     

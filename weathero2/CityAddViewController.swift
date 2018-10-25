@@ -13,9 +13,11 @@ class CityAddViewController: UIViewController {
     var city: String = ""
     
     @IBOutlet weak var cityName: UITextField!
+    @IBOutlet weak var searchButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchButton.layer.cornerRadius = 5.0
 
         // Do any additional setup after loading the view.
     }
@@ -27,7 +29,10 @@ class CityAddViewController: UIViewController {
     }
     
 
-   
+    @IBAction func onSearchButtonClick(_ sender: UIButton) {
+        print(self.cityName.text!)
+    }
+    
     /*
     // MARK: - Navigation
 
