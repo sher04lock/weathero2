@@ -11,8 +11,9 @@ import UIKit
 class CityAddViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var city: String = ""
-    var foundCities: [CityModel] = [CityModel(name: "Dublin"), CityModel(name: "Berlin"), CityModel(name:"Warsaw")]
-    var selectedCities: [String] = []
+    var foundCities: [CityModel] = []
+    var selectedCities: [CityModel] = []
+    @IBOutlet weak var statusLabel: UILabel!
     
     @IBOutlet weak var cityName: UITextField!
     @IBOutlet weak var searchButton: UIButton!
@@ -20,6 +21,7 @@ class CityAddViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        statusLabel.text = ""
         tableView.tableFooterView = UIView(frame: .zero)
         searchButton.layer.cornerRadius = 5.0
 
@@ -32,11 +34,13 @@ class CityAddViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
-
     @IBAction func onSearchButtonClick(_ sender: UIButton) {
         print(self.cityName.text!)
         let forecastService = ForecastService()
         forecastService.searchCity(query: self.cityName.text!, callback: onDataFetched)
+        
+        searchButton.isEnabled = false
+        searchButton.setTitle("Searching...", for: .normal)
     }
     
     func onDataFetched(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void {
@@ -48,23 +52,27 @@ class CityAddViewController: UIViewController, UITableViewDelegate, UITableViewD
         saveFoundCities(data: data)
         
         DispatchQueue.main.async {
+            self.searchButton.isEnabled = true
+            self.searchButton.setTitle("Search", for: .normal)
             self.updateView()
         }
     }
     
     func saveFoundCities(data: Data) {
         do {
+            self.foundCities = []
             if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [[String: Any]] {
 
                 for case let cityJSON in json {
-
                     if let foundCity = CityModel(json: cityJSON) {
                         print("adding city \(foundCity.name)")
                         self.foundCities.append(foundCity)
                     }
+                    
+                    print ("found cities saved")
+                    print(foundCities)
                 }
-                print ("found cities saved")
-                print(foundCities)
+                
             }
         } catch let error {
             print(error.localizedDescription)
@@ -72,6 +80,12 @@ class CityAddViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func updateView() {
+        if self.foundCities.isEmpty {
+            print ("Couldn't find matching city")
+            self.statusLabel.text = "I couldn't find anything :("
+        } else {
+            self.statusLabel.text = "Found cities:"
+        }
         tableView.reloadData()
     }
     
@@ -94,14 +108,12 @@ class CityAddViewController: UIViewController, UITableViewDelegate, UITableViewD
             print("deselecting \(foundCities[indexPath.row])")
 
            cell?.accessoryType = .none
-            selectedCities = selectedCities.filter {$0 != foundCities[indexPath.row].name}
+            selectedCities = selectedCities.filter {$0.id != foundCities[indexPath.row].id}
         } else {
             print("selecting \(foundCities[indexPath.row])")
             cell?.accessoryType = .checkmark
-            selectedCities.append(foundCities[indexPath.row].name)
+            selectedCities.append(foundCities[indexPath.row])
         }
-        
-        print("selectedRows: \(selectedCities)")
     }
     
     /*

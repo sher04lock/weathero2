@@ -7,13 +7,13 @@
 //
 
 import Foundation
-let WARSAW_WOEID = "523920"
-let BERLIN_WOEID = "638242"
-let DUBLIN_WOEID = "560743"
+let WARSAW_WOEID = 523920
+let BERLIN_WOEID = 638242
+let DUBLIN_WOEID = 560743
 
 class ForecastService {
     
-    func getForecast(cityCode: String = WARSAW_WOEID, callback: @escaping (Data?, URLResponse?, Error?) -> Void) {
+    func getForecast(cityCode: Int = WARSAW_WOEID, callback: @escaping (Data?, URLResponse?, Error?) -> Void) {
         print("Downloading forecast for \(cityCode)")
         self.makeRequest(urlString: "https://www.metaweather.com/api/location/\(cityCode)", callback: callback)
     }

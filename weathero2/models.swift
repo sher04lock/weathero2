@@ -8,8 +8,13 @@
 import Foundation
 
 struct ForecastModel {
-    let city: String
+    let city: CityModel
     let weatherList: [WeatherModel]
+    
+    init(city: CityModel, weatherList: [WeatherModel]) {
+        self.city = city
+        self.weatherList = weatherList
+    }
 }
 
 struct WeatherModel {
