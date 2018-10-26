@@ -24,12 +24,14 @@ class ForecastService {
     }
     
     private func makeRequest(urlString: String, callback: @escaping (Data?, URLResponse?, Error?) -> Void) {
-        let url = URL(string: urlString)!
-        let session = URLSession.shared
-        let request = URLRequest(url: url)
-        
-        let task = session.dataTask(with: request as URLRequest, completionHandler: callback)
-        
-        task.resume()
+        if let escapedString = urlString.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed) {
+            let url = URL(string: escapedString)!
+            let session = URLSession.shared
+            let request = URLRequest(url: url)
+            
+            let task = session.dataTask(with: request as URLRequest, completionHandler: callback)
+            
+            task.resume()
+        }
     }
 }
