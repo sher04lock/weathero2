@@ -1,16 +1,7 @@
-//
-//  CityAddViewController.swift
-//  weathero2
-//
-//  Created by John Doe on 20/10/2018.
-//  Copyright © 2018 John Doe. All rights reserved.
-//
-
 import UIKit
 
 class CityAddViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    var city: String = ""
     var foundCities: [CityModel] = []
     var selectedCities: [CityModel] = []
     @IBOutlet weak var statusLabel: UILabel!
@@ -24,14 +15,6 @@ class CityAddViewController: UIViewController, UITableViewDelegate, UITableViewD
         statusLabel.text = ""
         tableView.tableFooterView = UIView(frame: .zero)
         searchButton.layer.cornerRadius = 5.0
-
-        // Do any additional setup after loading the view.
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "doneSegue" {
-            city = cityName.text!
-        }
     }
     
     @IBAction func onSearchButtonClick(_ sender: UIButton) {
@@ -95,7 +78,6 @@ class CityAddViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.textLabel!.text = cityEntry
         
         return cell
-
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -115,15 +97,4 @@ class CityAddViewController: UIViewController, UITableViewDelegate, UITableViewD
             selectedCities.append(foundCities[indexPath.row])
         }
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

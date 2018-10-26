@@ -1,11 +1,3 @@
-//
-//  ViewController.swift
-//  Weathero
-//
-//  Created by Student on 11.10.2018.
-//  Copyright © 2018 Student. All rights reserved.
-//
-
 import UIKit
 
 
