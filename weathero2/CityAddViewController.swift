@@ -5,6 +5,7 @@ class CityAddViewController: UIViewController, UITableViewDelegate, UITableViewD
     var foundCities: [CityModel] = []
     var selectedCities: [CityModel] = []
     @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var hintLabel: UILabel!
     
     @IBOutlet weak var cityName: UITextField!
     @IBOutlet weak var searchButton: UIButton!
@@ -68,6 +69,7 @@ class CityAddViewController: UIViewController, UITableViewDelegate, UITableViewD
             self.statusLabel.text = "I couldn't find anything :("
         } else {
             self.statusLabel.text = "Found cities:"
+            self.hintLabel.text = "(select everything you need and click 'Save'!)"
         }
         tableView.reloadData()
     }

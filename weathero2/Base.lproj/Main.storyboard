@@ -143,8 +143,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wse-5k-QOx">
+                                <rect key="frame" x="186" y="256" width="3" height="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5Vf-TR-6Vd">
-                                <rect key="frame" x="0.0" y="271" width="375" height="396"/>
+                                <rect key="frame" x="0.0" y="278" width="375" height="389"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="Hf6-gd-CUp">
@@ -171,11 +177,13 @@
                             <constraint firstItem="bFv-D0-L5K" firstAttribute="top" secondItem="M5n-Dg-TXF" secondAttribute="topMargin" constant="100" id="Vd6-Ob-VmD"/>
                             <constraint firstItem="bFv-D0-L5K" firstAttribute="centerX" secondItem="M5n-Dg-TXF" secondAttribute="centerX" id="bhB-UT-P8O"/>
                             <constraint firstItem="8La-oN-MKj" firstAttribute="leading" secondItem="kVk-xf-doC" secondAttribute="leading" id="bqD-CY-yth"/>
+                            <constraint firstItem="wse-5k-QOx" firstAttribute="centerX" secondItem="M5n-Dg-TXF" secondAttribute="centerX" id="gaH-7D-jZv"/>
                             <constraint firstItem="5Vf-TR-6Vd" firstAttribute="leading" secondItem="kVk-xf-doC" secondAttribute="leading" id="k2q-iJ-zXE"/>
                             <constraint firstItem="8La-oN-MKj" firstAttribute="centerX" secondItem="M5n-Dg-TXF" secondAttribute="centerX" id="nhh-Le-tLF"/>
                             <constraint firstItem="kVk-xf-doC" firstAttribute="bottom" secondItem="5Vf-TR-6Vd" secondAttribute="bottom" id="nqW-eS-jht"/>
-                            <constraint firstItem="5Vf-TR-6Vd" firstAttribute="top" secondItem="8La-oN-MKj" secondAttribute="bottom" constant="20" id="o7J-6s-bIU"/>
                             <constraint firstItem="bFv-D0-L5K" firstAttribute="leading" secondItem="kVk-xf-doC" secondAttribute="leading" constant="40" id="ohf-72-ylj"/>
+                            <constraint firstItem="5Vf-TR-6Vd" firstAttribute="top" secondItem="wse-5k-QOx" secondAttribute="bottom" constant="10" id="pSu-aF-Dmd"/>
+                            <constraint firstItem="wse-5k-QOx" firstAttribute="top" secondItem="8La-oN-MKj" secondAttribute="bottom" constant="5" id="qPP-Pq-deT"/>
                             <constraint firstItem="kVk-xf-doC" firstAttribute="trailing" secondItem="8La-oN-MKj" secondAttribute="trailing" id="qsH-Bc-V4v"/>
                             <constraint firstItem="5Vf-TR-6Vd" firstAttribute="leading" secondItem="kVk-xf-doC" secondAttribute="leading" id="rxC-fG-pZ6"/>
                         </constraints>
@@ -190,6 +198,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="cityName" destination="0Qn-R3-4wz" id="UcG-pe-Fsn"/>
+                        <outlet property="hintLabel" destination="wse-5k-QOx" id="Rsh-2h-N0u"/>
                         <outlet property="searchButton" destination="1hp-ET-dHT" id="1iG-Mm-IlW"/>
                         <outlet property="statusLabel" destination="8La-oN-MKj" id="nnq-ad-Wfa"/>
                         <outlet property="tableView" destination="5Vf-TR-6Vd" id="Gwf-AB-5qN"/>
