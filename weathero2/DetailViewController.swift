@@ -7,7 +7,6 @@ class DetailViewController: UIViewController {
     var currentWeatherIndex = 0
     var city: CityModel!
     @IBOutlet weak var weatherImage: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var weatherTypeField: UILabel!
     @IBOutlet weak var lowestTemp: UITextField!
@@ -28,7 +27,7 @@ class DetailViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showMap" {
             let controller = segue.destination as! MapViewController
-                controller.cityName = self.city.name
+            controller.coords = self.city.coords
             }
     }
     
