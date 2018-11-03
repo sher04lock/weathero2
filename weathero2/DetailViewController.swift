@@ -5,8 +5,7 @@ class DetailViewController: UIViewController {
     
     var weatherList: [WeatherModel] = []
     var currentWeatherIndex = 0
-    var city: String = ""
-    
+    var city: CityModel!
     @IBOutlet weak var weatherImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -26,6 +25,13 @@ class DetailViewController: UIViewController {
         updateView()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showMap" {
+            let controller = segue.destination as! MapViewController
+                controller.cityName = self.city.name
+            }
+    }
+    
     func initialSetup() {
         previousButton.isEnabled = false
         nextButton.isEnabled = false
@@ -38,7 +44,7 @@ class DetailViewController: UIViewController {
         
         let forecast = self.weatherList[currentWeatherIndex]
         
-        self.navigationItem.title = city
+        self.navigationItem.title = city.name
         
         setForecastDate(forecast.date)
         setImage(forecast.weatherTypeAbbreviaton)

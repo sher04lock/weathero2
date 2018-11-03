@@ -87,7 +87,7 @@ class MasterViewController: UITableViewController {
                 if let forecast = forecasts[forecastId] {
                     let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
                     controller.weatherList = forecast.weatherList
-                    controller.city = forecast.city.name
+                    controller.city = forecast.city
                     controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
                     controller.navigationItem.leftItemsSupplementBackButton = true
                 }

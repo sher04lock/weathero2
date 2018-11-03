@@ -408,7 +408,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mBg-4r-MVn"/>
                     </view>
-                    <navigationItem key="navigationItem" id="oWA-Gw-c9m"/>
+                    <navigationItem key="navigationItem" id="oWA-Gw-c9m">
+                        <barButtonItem key="rightBarButtonItem" title="Map" id="8ye-bM-MJK">
+                            <connections>
+                                <segue destination="DYP-mR-NcD" kind="showDetail" identifier="showMap" id="eap-U2-Iyf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="airPressure" destination="MUZ-qx-XH8" id="0w7-wC-Nig"/>
                         <outlet property="dateLabel" destination="TZ8-s9-7Rz" id="9vl-UO-u6I"/>
@@ -425,6 +431,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YIc-yl-PRI" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="780" y="128"/>
+        </scene>
+        <!--Map-->
+        <scene sceneID="JEL-Zb-mL6">
+            <objects>
+                <viewController id="DYP-mR-NcD" customClass="MapViewController" customModule="weathero2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="t3K-Ot-jw8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="di2-Fk-IDO">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="di2-Fk-IDO" firstAttribute="leading" secondItem="S5y-wu-h57" secondAttribute="leading" id="0ER-6c-uKo"/>
+                            <constraint firstItem="di2-Fk-IDO" firstAttribute="top" secondItem="S5y-wu-h57" secondAttribute="top" id="8D0-1I-0fb"/>
+                            <constraint firstItem="S5y-wu-h57" firstAttribute="trailing" secondItem="di2-Fk-IDO" secondAttribute="trailing" id="gWS-EO-vBN"/>
+                            <constraint firstItem="S5y-wu-h57" firstAttribute="bottom" secondItem="di2-Fk-IDO" secondAttribute="bottom" id="vLK-7t-IGy"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="S5y-wu-h57"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Map" id="K8R-0p-8bf"/>
+                    <connections>
+                        <outlet property="mapView" destination="di2-Fk-IDO" id="EdO-wu-gg5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gaf-G2-A0L" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1593" y="128"/>
         </scene>
     </scenes>
     <resources>
