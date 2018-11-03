@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="H1p-Uh-vWS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="H1p-Uh-vWS">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -176,7 +176,6 @@
                             <constraint firstItem="kVk-xf-doC" firstAttribute="trailing" secondItem="5Vf-TR-6Vd" secondAttribute="trailing" id="N3c-A3-sad"/>
                             <constraint firstItem="bFv-D0-L5K" firstAttribute="top" secondItem="M5n-Dg-TXF" secondAttribute="topMargin" constant="100" id="Vd6-Ob-VmD"/>
                             <constraint firstItem="bFv-D0-L5K" firstAttribute="centerX" secondItem="M5n-Dg-TXF" secondAttribute="centerX" id="bhB-UT-P8O"/>
-                            <constraint firstItem="8La-oN-MKj" firstAttribute="leading" secondItem="kVk-xf-doC" secondAttribute="leading" id="bqD-CY-yth"/>
                             <constraint firstItem="wse-5k-QOx" firstAttribute="centerX" secondItem="M5n-Dg-TXF" secondAttribute="centerX" id="gaH-7D-jZv"/>
                             <constraint firstItem="5Vf-TR-6Vd" firstAttribute="leading" secondItem="kVk-xf-doC" secondAttribute="leading" id="k2q-iJ-zXE"/>
                             <constraint firstItem="8La-oN-MKj" firstAttribute="centerX" secondItem="M5n-Dg-TXF" secondAttribute="centerX" id="nhh-Le-tLF"/>
