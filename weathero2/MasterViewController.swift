@@ -63,6 +63,7 @@ class MasterViewController: UITableViewController {
                 
                 if let city = CityModel(json: json) {
                     self.forecasts[city.id] = ForecastModel(city: city, weatherList: weatherList)
+                    self.savedCitiesIDs.insert(city.id, at: 0)
                     print("forecast saved")
                 }
             }
@@ -152,7 +153,6 @@ class MasterViewController: UITableViewController {
             }
             
             self.loadForecast(cityId: city.id)
-            self.savedCitiesIDs.insert(city.id, at: 0)
         }
         
         tableView.reloadData()
