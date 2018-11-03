@@ -1,19 +1,23 @@
 import UIKit
 
 class CityAddViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
     var foundCities: [CityModel] = []
     var selectedCities: [CityModel] = []
     @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var toggleStack: UIStackView!
     @IBOutlet weak var hintLabel: UILabel!
     
     @IBOutlet weak var cityName: UITextField!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var toggleSwitch: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         statusLabel.text = ""
+        toggleStack.isHidden = true
+        hintLabel.text = ""
         tableView.tableFooterView = UIView(frame: .zero)
         searchButton.layer.cornerRadius = 5.0
     }
@@ -46,7 +50,7 @@ class CityAddViewController: UIViewController, UITableViewDelegate, UITableViewD
         do {
             self.foundCities = []
             if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [[String: Any]] {
-
+                
                 for case let cityJSON in json {
                     if let foundCity = CityModel(json: cityJSON) {
                         print("adding city \(foundCity.name)")
@@ -67,9 +71,13 @@ class CityAddViewController: UIViewController, UITableViewDelegate, UITableViewD
         if self.foundCities.isEmpty {
             print ("Couldn't find matching city")
             self.statusLabel.text = "I couldn't find anything :("
+            self.toggleStack.isHidden = true
         } else {
             self.statusLabel.text = "Found cities:"
-            self.hintLabel.text = "(select everything you need and click 'Save'!)"
+            if (self.foundCities.count > 1) {
+                self.toggleStack.isHidden = false
+                self.hintLabel.text = "(select everything you need and click 'Save'!)"
+            }
         }
         tableView.reloadData()
     }
@@ -87,16 +95,39 @@ class CityAddViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-                let cell = tableView.cellForRow(at: indexPath)
+        if self.toggleSwitch.isOn {
+            self.toggleCheckMark(tableView: tableView, indexPath: indexPath)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if !self.toggleSwitch.isOn {
+            self.toggleCheckMark(tableView: tableView, indexPath: indexPath)
+        }
+        
+        return indexPath
+    }
+    
+    func toggleCheckMark(tableView: UITableView, indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
         if cell?.accessoryType == .checkmark {
             print("deselecting \(foundCities[indexPath.row])")
-
-           cell?.accessoryType = .none
+            
+            cell?.accessoryType = .none
             selectedCities = selectedCities.filter {$0.id != foundCities[indexPath.row].id}
         } else {
             print("selecting \(foundCities[indexPath.row])")
             cell?.accessoryType = .checkmark
             selectedCities.append(foundCities[indexPath.row])
         }
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String?, sender: Any?) -> Bool {
+        if let ident = identifier {
+            if ident == "cellSegue" {
+                return !self.toggleSwitch.isOn
+            }
+        }
+        return true
     }
 }

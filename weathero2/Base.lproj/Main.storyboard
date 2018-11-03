@@ -137,20 +137,8 @@
                                     <constraint firstItem="0Qn-R3-4wz" firstAttribute="leading" secondItem="bFv-D0-L5K" secondAttribute="leading" id="y1f-NE-fzm"/>
                                 </constraints>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8La-oN-MKj">
-                                <rect key="frame" x="0.0" y="235" width="375" height="16"/>
-                                <fontDescription key="fontDescription" type="italicSystem" pointSize="13"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wse-5k-QOx">
-                                <rect key="frame" x="186" y="256" width="3" height="12"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5Vf-TR-6Vd">
-                                <rect key="frame" x="0.0" y="278" width="375" height="389"/>
+                                <rect key="frame" x="0.0" y="328.5" width="375" height="338.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="Hf6-gd-CUp">
@@ -160,6 +148,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="mIG-TW-1wW" kind="unwind" identifier="cellSegue" unwindAction="doneWithSegue:" id="tWd-2n-q9u"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -167,40 +158,71 @@
                                     <outlet property="delegate" destination="A5U-v2-DqB" id="fcr-ZH-Thn"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hint" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WGI-S8-anB">
+                                <rect key="frame" x="40" y="278" width="295" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8La-oN-MKj">
+                                <rect key="frame" x="0.0" y="302.5" width="375" height="16"/>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="bLH-q9-Oyd">
+                                <rect key="frame" x="93" y="242" width="242" height="31"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select more than one city" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D1V-KC-OC4">
+                                        <rect key="frame" x="0.0" y="0.0" width="185" height="31"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7fo-bg-gJM">
+                                        <rect key="frame" x="193" y="0.0" width="51" height="31"/>
+                                    </switch>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <accessibility key="accessibilityConfiguration" label="Add city"/>
                         <constraints>
                             <constraint firstItem="kVk-xf-doC" firstAttribute="trailing" secondItem="bFv-D0-L5K" secondAttribute="trailing" constant="40" id="8b2-yJ-jJZ"/>
-                            <constraint firstItem="8La-oN-MKj" firstAttribute="top" secondItem="bFv-D0-L5K" secondAttribute="bottom" constant="8" id="D51-bR-xmz"/>
+                            <constraint firstItem="kVk-xf-doC" firstAttribute="trailing" secondItem="WGI-S8-anB" secondAttribute="trailing" constant="40" id="AkO-Np-pRX"/>
+                            <constraint firstItem="WGI-S8-anB" firstAttribute="top" secondItem="bLH-q9-Oyd" secondAttribute="bottom" constant="5" id="INY-CM-wOv"/>
+                            <constraint firstItem="bLH-q9-Oyd" firstAttribute="top" secondItem="bFv-D0-L5K" secondAttribute="bottom" constant="15" id="Kyq-kb-pKU"/>
                             <constraint firstItem="kVk-xf-doC" firstAttribute="trailing" secondItem="5Vf-TR-6Vd" secondAttribute="trailing" id="N3c-A3-sad"/>
+                            <constraint firstItem="WGI-S8-anB" firstAttribute="centerX" secondItem="M5n-Dg-TXF" secondAttribute="centerX" id="TZU-OV-Ckx"/>
+                            <constraint firstItem="kVk-xf-doC" firstAttribute="trailing" secondItem="bLH-q9-Oyd" secondAttribute="trailing" constant="40" id="UEh-Jd-x1o"/>
                             <constraint firstItem="bFv-D0-L5K" firstAttribute="top" secondItem="M5n-Dg-TXF" secondAttribute="topMargin" constant="100" id="Vd6-Ob-VmD"/>
                             <constraint firstItem="bFv-D0-L5K" firstAttribute="centerX" secondItem="M5n-Dg-TXF" secondAttribute="centerX" id="bhB-UT-P8O"/>
-                            <constraint firstItem="wse-5k-QOx" firstAttribute="centerX" secondItem="M5n-Dg-TXF" secondAttribute="centerX" id="gaH-7D-jZv"/>
                             <constraint firstItem="5Vf-TR-6Vd" firstAttribute="leading" secondItem="kVk-xf-doC" secondAttribute="leading" id="k2q-iJ-zXE"/>
                             <constraint firstItem="8La-oN-MKj" firstAttribute="centerX" secondItem="M5n-Dg-TXF" secondAttribute="centerX" id="nhh-Le-tLF"/>
                             <constraint firstItem="kVk-xf-doC" firstAttribute="bottom" secondItem="5Vf-TR-6Vd" secondAttribute="bottom" id="nqW-eS-jht"/>
                             <constraint firstItem="bFv-D0-L5K" firstAttribute="leading" secondItem="kVk-xf-doC" secondAttribute="leading" constant="40" id="ohf-72-ylj"/>
-                            <constraint firstItem="5Vf-TR-6Vd" firstAttribute="top" secondItem="wse-5k-QOx" secondAttribute="bottom" constant="10" id="pSu-aF-Dmd"/>
-                            <constraint firstItem="wse-5k-QOx" firstAttribute="top" secondItem="8La-oN-MKj" secondAttribute="bottom" constant="5" id="qPP-Pq-deT"/>
                             <constraint firstItem="kVk-xf-doC" firstAttribute="trailing" secondItem="8La-oN-MKj" secondAttribute="trailing" id="qsH-Bc-V4v"/>
                             <constraint firstItem="5Vf-TR-6Vd" firstAttribute="leading" secondItem="kVk-xf-doC" secondAttribute="leading" id="rxC-fG-pZ6"/>
+                            <constraint firstItem="8La-oN-MKj" firstAttribute="top" secondItem="WGI-S8-anB" secondAttribute="bottom" constant="10" id="wDX-dq-MB2"/>
+                            <constraint firstItem="5Vf-TR-6Vd" firstAttribute="top" secondItem="8La-oN-MKj" secondAttribute="bottom" constant="10" id="xZ2-7P-nGl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kVk-xf-doC"/>
                     </view>
                     <navigationItem key="navigationItem" title="Add city" id="PBf-7k-DKR">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="ViG-rR-OSL">
                             <connections>
-                                <segue destination="mIG-TW-1wW" kind="unwind" unwindAction="doneWithSegue:" id="VQg-8V-2s3"/>
+                                <segue destination="mIG-TW-1wW" kind="unwind" identifier="saveSegue" unwindAction="doneWithSegue:" id="VQg-8V-2s3"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="cityName" destination="0Qn-R3-4wz" id="UcG-pe-Fsn"/>
-                        <outlet property="hintLabel" destination="wse-5k-QOx" id="Rsh-2h-N0u"/>
+                        <outlet property="hintLabel" destination="WGI-S8-anB" id="Ng9-ht-Dhr"/>
                         <outlet property="searchButton" destination="1hp-ET-dHT" id="1iG-Mm-IlW"/>
                         <outlet property="statusLabel" destination="8La-oN-MKj" id="nnq-ad-Wfa"/>
                         <outlet property="tableView" destination="5Vf-TR-6Vd" id="Gwf-AB-5qN"/>
+                        <outlet property="toggleStack" destination="bLH-q9-Oyd" id="UfC-Wi-j2g"/>
+                        <outlet property="toggleSwitch" destination="7fo-bg-gJM" id="zXn-EV-eM7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7gq-4M-zj2" userLabel="First Responder" sceneMemberID="firstResponder"/>
