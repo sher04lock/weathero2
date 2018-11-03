@@ -52,7 +52,7 @@ extension WeatherModel {
 struct CityModel {
     let name: String
     let id: Int
-    let latt_long: String
+    let coords: Coords
     
     init?(json: [String: Any]) {
         print(json)
@@ -64,12 +64,28 @@ struct CityModel {
         }
         self.name = name
         self.id = id
-        self.latt_long = latt_long
+        
+        self.coords = extractCoordsFrom(string: latt_long)
+    }
+}
+
+struct Coords {
+    let latitude: Double
+    let longitude: Double
+    
+    init(_ latitude: Double, _ longitude: Double) {
+        self.latitude = latitude
+        self.longitude = longitude
+    }
+}
+
+func extractCoordsFrom(string: String) -> Coords {
+    let latt_longArray = string.components(separatedBy: ",")
+    
+    if let latitude = Double(latt_longArray[0]),
+        let longitude = Double(latt_longArray[1]) {
+        return Coords(latitude, longitude)
     }
     
-    init(name: String) {
-        self.name = name
-        self.id = 0
-        self.latt_long = ""
-    }
+    return Coords(0, 0)
 }
