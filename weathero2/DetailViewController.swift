@@ -6,6 +6,7 @@ class DetailViewController: UIViewController {
     var weatherList: [WeatherModel] = []
     var currentWeatherIndex = 0
     var city: CityModel!
+    
     @IBOutlet weak var weatherImage: UIImageView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var weatherTypeField: UILabel!

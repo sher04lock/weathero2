@@ -129,18 +129,8 @@ class MasterViewController: UITableViewController {
             let deletedCity = savedCitiesIDs.remove(at: indexPath.row)
             forecasts[deletedCity] = nil
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
     }
-    
-//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 60
-//    }
-    
-    @IBAction func cancel(segue: UIStoryboardSegue) {
-    }
-    
     
     @IBAction func done(segue: UIStoryboardSegue) {
         let cityAddVC = segue.source as! CityAddViewController
@@ -158,6 +148,3 @@ class MasterViewController: UITableViewController {
         tableView.reloadData()
     }
 }
-
-
-
