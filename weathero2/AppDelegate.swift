@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  weathero2
-//
-//  Created by John Doe on 20/10/2018.
-//  Copyright © 2018 John Doe. All rights reserved.
-//
-
 import UIKit
 
 @UIApplicationMain

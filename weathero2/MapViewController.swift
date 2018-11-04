@@ -1,9 +1,10 @@
 import UIKit
 import MapKit
+import CoreLocation
 
 class MapViewController: UIViewController {
     
-    var coords: Coords!
+    var coordinate: CLLocationCoordinate2D!
 
     @IBOutlet weak var mapView: MKMapView!
     
@@ -13,17 +14,15 @@ class MapViewController: UIViewController {
     }
     
     func updateView() {
-        let cityCoords = CLLocationCoordinate2D(latitude: coords.latitude, longitude: coords.longitude)
         let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
-        let region = MKCoordinateRegion(center: cityCoords, span: span)
+        let region = MKCoordinateRegion(center: coordinate, span: span)
  
         let annotation = MKPointAnnotation()
         annotation.subtitle = "When you are here, weather should be like that"
-        annotation.coordinate = cityCoords
+        annotation.coordinate = coordinate
         
-        mapView.setCenter(cityCoords, animated: true)
+        mapView.setCenter(coordinate, animated: true)
         mapView.setRegion(region, animated: true)
         mapView.addAnnotation(annotation)
     }
-    
 }

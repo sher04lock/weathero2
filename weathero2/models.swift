@@ -1,4 +1,5 @@
 import Foundation
+import CoreLocation
 
 struct ForecastModel {
     let city: CityModel
@@ -52,40 +53,46 @@ extension WeatherModel {
 struct CityModel {
     let name: String
     let id: Int
-    let coords: Coords
+    let coordinate: CLLocationCoordinate2D
+    let distance: Int?
     
     init?(json: [String: Any]) {
-        print(json)
         guard let name = json["title"] as? String,
             let id = json["woeid"] as? Int,
             let latt_long = json["latt_long"] as? String
             else {
                 return nil
         }
+        
         self.name = name
         self.id = id
-        
-        self.coords = extractCoordsFrom(string: latt_long)
+        self.coordinate = extractCoordsFrom(string: latt_long)
+        self.distance = json["distance"] as? Int
     }
 }
 
-struct Coords {
-    let latitude: Double
-    let longitude: Double
-    
-    init(_ latitude: Double, _ longitude: Double) {
-        self.latitude = latitude
-        self.longitude = longitude
-    }
-}
-
-func extractCoordsFrom(string: String) -> Coords {
+func extractCoordsFrom(string: String) -> CLLocationCoordinate2D {
     let latt_longArray = string.components(separatedBy: ",")
     
     if let latitude = Double(latt_longArray[0]),
         let longitude = Double(latt_longArray[1]) {
-        return Coords(latitude, longitude)
+        return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
     
-    return Coords(0, 0)
+    return CLLocationCoordinate2D(latitude: 0, longitude: 0)
+}
+
+struct HumanReadibleLocation: CustomStringConvertible {
+    
+    var description: String {
+        return "\(self.city), \(self.country)"
+    }
+    
+    let city: String
+    let country: String
+    
+    init(with placemark: CLPlacemark) {
+        self.city = placemark.locality ?? ""
+        self.country = placemark.country ?? ""
+    }
 }

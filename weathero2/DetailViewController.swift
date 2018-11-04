@@ -27,7 +27,7 @@ class DetailViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showMap" {
             let controller = segue.destination as! MapViewController
-            controller.coords = self.city.coords
+            controller.coordinate = self.city.coordinate
             }
     }
     
@@ -64,7 +64,6 @@ class DetailViewController: UIViewController {
     }
     
     func setForecastDate(_ date: Date?) -> Void {
-        print (date!)
         if (date == nil) {
             dateLabel.text = ""
             return

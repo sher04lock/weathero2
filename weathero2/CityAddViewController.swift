@@ -1,6 +1,7 @@
 import UIKit
+import CoreLocation
 
-class CityAddViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CityAddViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
     
     var foundCities: [CityModel] = []
     var selectedCities: [CityModel] = []
@@ -13,6 +14,13 @@ class CityAddViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var toggleSwitch: UISwitch!
     
+    @IBOutlet weak var locationStackView: UIStackView!
+    @IBOutlet weak var currentLocationLabel: UILabel!
+    @IBOutlet weak var searchByLocationButton: UIButton!
+    
+    var locationManager: CLLocationManager!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         statusLabel.text = ""
@@ -20,14 +28,30 @@ class CityAddViewController: UIViewController, UITableViewDelegate, UITableViewD
         hintLabel.text = ""
         tableView.tableFooterView = UIView(frame: .zero)
         searchButton.layer.cornerRadius = 5.0
+        locationStackView.isHidden = true
+        searchByLocationButton.isHidden = true
+        
+        getLocation()
+    }
+    
+    @IBAction func onSearchByLocationButtonClick(_ sender: UIButton) {
+        print("searching")
+        self.showSearchPending()
+        
+        let forecastService = ForecastService()
+        forecastService.findCities(coordinate: self.locationManager.location!.coordinate, callback: onDataFetched)
     }
     
     @IBAction func onSearchButtonClick(_ sender: UIButton) {
-        print(self.cityName.text!)
-        let forecastService = ForecastService()
-        forecastService.searchCity(query: self.cityName.text!, callback: onDataFetched)
+        self.showSearchPending()
         
+        let forecastService = ForecastService()
+        forecastService.findCities(name: self.cityName.text!, callback: onDataFetched)
+    }
+    
+    func showSearchPending() {
         searchButton.isEnabled = false
+        searchByLocationButton.isEnabled = false
         searchButton.setTitle("Searching...", for: .normal)
     }
     
@@ -41,6 +65,7 @@ class CityAddViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         DispatchQueue.main.async {
             self.searchButton.isEnabled = true
+            self.searchByLocationButton.isEnabled = true
             self.searchButton.setTitle("Search", for: .normal)
             self.updateView()
         }
@@ -56,10 +81,8 @@ class CityAddViewController: UIViewController, UITableViewDelegate, UITableViewD
                         print("adding city \(foundCity.name)")
                         self.foundCities.append(foundCity)
                     }
-                    
-                    print ("found cities saved")
-                    print(foundCities)
                 }
+                print ("found cities saved")
                 
             }
         } catch let error {
@@ -79,13 +102,19 @@ class CityAddViewController: UIViewController, UITableViewDelegate, UITableViewD
                 self.hintLabel.text = "(select everything you need and click 'Save'!)"
             }
         }
+        
         tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        let cityEntry = foundCities[indexPath.row].name
-        cell.textLabel!.text = cityEntry
+        let cityEntry = foundCities[indexPath.row]
+       
+        cell.textLabel!.text = cityEntry.name
+        
+        if let distance = cityEntry.distance {
+            cell.detailTextLabel!.text = "\(distance / 1000) km"
+        }
         
         return cell
     }
@@ -129,5 +158,32 @@ class CityAddViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
         }
         return true
+    }
+    
+    // Location
+    func getLocation() {
+        if (CLLocationManager.locationServicesEnabled())
+        {
+            locationManager = CLLocationManager()
+            locationManager.delegate = self
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.startUpdatingLocation()
+            if let location = locationManager.location {
+                CLGeocoder().reverseGeocodeLocation(location) { placemarks, error in
+                    
+                    guard let placemark = placemarks?.first else {
+                        let errorString = error?.localizedDescription ?? "Unexpected Error"
+                        print("[Uops!] location reverse geocoding went wrong: \(errorString)")
+                        return
+                    }
+                    
+                    let humanReadibleLocation = HumanReadibleLocation(with: placemark)
+                    
+                    self.currentLocationLabel.text = String(describing: humanReadibleLocation)
+                    self.locationStackView.isHidden = false
+                    self.searchByLocationButton.isHidden = false
+                }
+            }
+        }
     }
 }

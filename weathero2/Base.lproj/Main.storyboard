@@ -141,12 +141,28 @@
                                 <rect key="frame" x="0.0" y="328.5" width="375" height="338.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="Hf6-gd-CUp">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="Ws5-N2-wsT" detailTextLabel="3Wj-A9-1LB" style="IBUITableViewCellStyleValue1" id="Hf6-gd-CUp">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hf6-gd-CUp" id="5OF-6X-Hzs">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ws5-N2-wsT">
+                                                    <rect key="frame" x="15" y="12" width="33.5" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3Wj-A9-1LB">
+                                                    <rect key="frame" x="316" y="12" width="44" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="mIG-TW-1wW" kind="unwind" identifier="cellSegue" unwindAction="doneWithSegue:" id="tWd-2n-q9u"/>
@@ -184,19 +200,50 @@
                                     </switch>
                                 </subviews>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="pGe-B6-owq">
+                                <rect key="frame" x="0.0" y="69" width="375" height="18"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current location:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SXe-Oj-8GM">
+                                        <rect key="frame" x="0.0" y="0.0" width="185" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="currentLocation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fde-62-v87">
+                                        <rect key="frame" x="190" y="0.0" width="185" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ldJ-7z-Qc5">
+                                <rect key="frame" x="102.5" y="87" width="170" height="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <state key="normal" title="Find forecast for where I am"/>
+                                <connections>
+                                    <action selector="onSearchByLocationButtonClick:" destination="A5U-v2-DqB" eventType="touchUpInside" id="DpF-q2-FIJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <accessibility key="accessibilityConfiguration" label="Add city"/>
                         <constraints>
+                            <constraint firstItem="pGe-B6-owq" firstAttribute="leading" secondItem="kVk-xf-doC" secondAttribute="leading" id="3mp-l2-7Cb"/>
                             <constraint firstItem="kVk-xf-doC" firstAttribute="trailing" secondItem="bFv-D0-L5K" secondAttribute="trailing" constant="40" id="8b2-yJ-jJZ"/>
                             <constraint firstItem="kVk-xf-doC" firstAttribute="trailing" secondItem="WGI-S8-anB" secondAttribute="trailing" constant="40" id="AkO-Np-pRX"/>
+                            <constraint firstItem="pGe-B6-owq" firstAttribute="centerX" secondItem="M5n-Dg-TXF" secondAttribute="centerX" id="FHy-ha-Sxn"/>
                             <constraint firstItem="WGI-S8-anB" firstAttribute="top" secondItem="bLH-q9-Oyd" secondAttribute="bottom" constant="5" id="INY-CM-wOv"/>
+                            <constraint firstItem="ldJ-7z-Qc5" firstAttribute="top" secondItem="pGe-B6-owq" secondAttribute="bottom" id="JzC-El-b8x"/>
                             <constraint firstItem="bLH-q9-Oyd" firstAttribute="top" secondItem="bFv-D0-L5K" secondAttribute="bottom" constant="15" id="Kyq-kb-pKU"/>
                             <constraint firstItem="kVk-xf-doC" firstAttribute="trailing" secondItem="5Vf-TR-6Vd" secondAttribute="trailing" id="N3c-A3-sad"/>
                             <constraint firstItem="WGI-S8-anB" firstAttribute="centerX" secondItem="M5n-Dg-TXF" secondAttribute="centerX" id="TZU-OV-Ckx"/>
                             <constraint firstItem="kVk-xf-doC" firstAttribute="trailing" secondItem="bLH-q9-Oyd" secondAttribute="trailing" constant="40" id="UEh-Jd-x1o"/>
                             <constraint firstItem="bFv-D0-L5K" firstAttribute="top" secondItem="M5n-Dg-TXF" secondAttribute="topMargin" constant="100" id="Vd6-Ob-VmD"/>
+                            <constraint firstItem="ldJ-7z-Qc5" firstAttribute="centerX" secondItem="M5n-Dg-TXF" secondAttribute="centerX" id="XTP-Gs-JlV"/>
                             <constraint firstItem="bFv-D0-L5K" firstAttribute="centerX" secondItem="M5n-Dg-TXF" secondAttribute="centerX" id="bhB-UT-P8O"/>
+                            <constraint firstItem="kVk-xf-doC" firstAttribute="trailing" secondItem="pGe-B6-owq" secondAttribute="trailing" id="hhl-Nj-4de"/>
+                            <constraint firstItem="pGe-B6-owq" firstAttribute="top" secondItem="kVk-xf-doC" secondAttribute="top" constant="5" id="i6e-q7-tKb"/>
                             <constraint firstItem="5Vf-TR-6Vd" firstAttribute="leading" secondItem="kVk-xf-doC" secondAttribute="leading" id="k2q-iJ-zXE"/>
                             <constraint firstItem="8La-oN-MKj" firstAttribute="centerX" secondItem="M5n-Dg-TXF" secondAttribute="centerX" id="nhh-Le-tLF"/>
                             <constraint firstItem="kVk-xf-doC" firstAttribute="bottom" secondItem="5Vf-TR-6Vd" secondAttribute="bottom" id="nqW-eS-jht"/>
@@ -217,8 +264,11 @@
                     </navigationItem>
                     <connections>
                         <outlet property="cityName" destination="0Qn-R3-4wz" id="UcG-pe-Fsn"/>
+                        <outlet property="currentLocationLabel" destination="fde-62-v87" id="etd-OI-lW0"/>
                         <outlet property="hintLabel" destination="WGI-S8-anB" id="Ng9-ht-Dhr"/>
+                        <outlet property="locationStackView" destination="pGe-B6-owq" id="fud-U4-gHG"/>
                         <outlet property="searchButton" destination="1hp-ET-dHT" id="1iG-Mm-IlW"/>
+                        <outlet property="searchByLocationButton" destination="ldJ-7z-Qc5" id="raW-Sm-wPY"/>
                         <outlet property="statusLabel" destination="8La-oN-MKj" id="nnq-ad-Wfa"/>
                         <outlet property="tableView" destination="5Vf-TR-6Vd" id="Gwf-AB-5qN"/>
                         <outlet property="toggleStack" destination="bLH-q9-Oyd" id="UfC-Wi-j2g"/>

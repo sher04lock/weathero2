@@ -1,11 +1,3 @@
-//
-//  utils.swift
-//  weathero2
-//
-//  Created by John Doe on 24/10/2018.
-//  Copyright © 2018 John Doe. All rights reserved.
-//
-
 import Foundation
 
 let INCOMING_DATE_FORMAT = "yyyy-MM-dd"
@@ -19,7 +11,6 @@ class Utils {
     static func formatDate(_ date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = DISPLAY_DATE_FORMAT
-        print(date)
         return formatter.string(from: date)
     }
     
