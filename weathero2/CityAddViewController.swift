@@ -5,54 +5,84 @@ class CityAddViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     var foundCities: [CityModel] = []
     var selectedCities: [CityModel] = []
-    @IBOutlet weak var statusLabel: UILabel!
-    @IBOutlet weak var toggleStack: UIStackView!
-    @IBOutlet weak var hintLabel: UILabel!
-    
-    @IBOutlet weak var cityName: UITextField!
-    @IBOutlet weak var searchButton: UIButton!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var toggleSwitch: UISwitch!
+    var locationManager: CLLocationManager!
     
     @IBOutlet weak var locationStackView: UIStackView!
     @IBOutlet weak var currentLocationLabel: UILabel!
     @IBOutlet weak var searchByLocationButton: UIButton!
     
-    var locationManager: CLLocationManager!
+    @IBOutlet weak var citySearchField: UITextField!
+    @IBOutlet weak var searchButton: UIButton!
+    
+    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var toggleStack: UIStackView!
+    @IBOutlet weak var multiselectLabel: UILabel!
+    @IBOutlet weak var toggleSwitch: UISwitch!
+    
+    
+    @IBOutlet weak var tableView: UITableView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         statusLabel.text = ""
         toggleStack.isHidden = true
-        hintLabel.text = ""
-        tableView.tableFooterView = UIView(frame: .zero)
-        searchButton.layer.cornerRadius = 5.0
         locationStackView.isHidden = true
         searchByLocationButton.isHidden = true
+        
+        tableView.tableFooterView = UIView(frame: .zero)
+        searchButton.layer.cornerRadius = 5.0
         
         getLocation()
     }
     
     @IBAction func onSearchByLocationButtonClick(_ sender: UIButton) {
         print("searching")
-        self.showSearchPending()
+        self.pending()
         
         let forecastService = ForecastService()
         forecastService.findCities(coordinate: self.locationManager.location!.coordinate, callback: onDataFetched)
     }
     
     @IBAction func onSearchButtonClick(_ sender: UIButton) {
-        self.showSearchPending()
+        self.pending()
         
         let forecastService = ForecastService()
-        forecastService.findCities(name: self.cityName.text!, callback: onDataFetched)
+        forecastService.findCities(name: self.citySearchField.text!, callback: onDataFetched)
     }
     
-    func showSearchPending() {
+    @IBAction func onToggleChange(_ sender: UISwitch) {
+        self.multiselectLabel.textColor = sender.isOn ? UIColor.black : UIColor.gray
+        
+        if (!sender.isOn) {
+            deselectAll()
+        }
+    }
+    
+    func deselectAll() {
+        for cell in tableView.visibleCells {
+            cell.accessoryType = .none
+        }
+        self.selectedCities = []
+    }
+    
+    func pending() {
         searchButton.isEnabled = false
         searchByLocationButton.isEnabled = false
         searchButton.setTitle("Searching...", for: .normal)
+        
+        clearTable()
+    }
+    
+    func loadingFinished() {
+        self.searchButton.isEnabled = true
+        self.searchByLocationButton.isEnabled = true
+        self.searchButton.setTitle("Search", for: .normal)
+    }
+    
+    func clearTable() {
+        self.foundCities = []
+        self.tableView.reloadData()
     }
     
     func onDataFetched(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void {
@@ -64,9 +94,7 @@ class CityAddViewController: UIViewController, UITableViewDelegate, UITableViewD
         saveFoundCities(data: data)
         
         DispatchQueue.main.async {
-            self.searchButton.isEnabled = true
-            self.searchByLocationButton.isEnabled = true
-            self.searchButton.setTitle("Search", for: .normal)
+            self.loadingFinished()
             self.updateView()
         }
     }
@@ -94,15 +122,10 @@ class CityAddViewController: UIViewController, UITableViewDelegate, UITableViewD
         if self.foundCities.isEmpty {
             print ("Couldn't find matching city")
             self.statusLabel.text = "I couldn't find anything :("
-            self.toggleStack.isHidden = true
         } else {
-            self.statusLabel.text = "Found cities:"
-            if (self.foundCities.count > 1) {
-                self.toggleStack.isHidden = false
-                self.hintLabel.text = "(select everything you need and click 'Save'!)"
-            }
+            self.statusLabel.text = ""
         }
-        
+        self.toggleStack.isHidden = foundCities.count <= 1
         tableView.reloadData()
     }
     
@@ -114,6 +137,8 @@ class CityAddViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         if let distance = cityEntry.distance {
             cell.detailTextLabel!.text = "\(distance / 1000) km"
+        } else {
+            cell.detailTextLabel!.text = ""
         }
         
         return cell
@@ -160,7 +185,6 @@ class CityAddViewController: UIViewController, UITableViewDelegate, UITableViewD
         return true
     }
     
-    // Location
     func getLocation() {
         if (CLLocationManager.locationServicesEnabled())
         {
@@ -168,6 +192,7 @@ class CityAddViewController: UIViewController, UITableViewDelegate, UITableViewD
             locationManager.delegate = self
             locationManager.requestWhenInUseAuthorization()
             locationManager.startUpdatingLocation()
+            
             if let location = locationManager.location {
                 CLGeocoder().reverseGeocodeLocation(location) { placemarks, error in
                     

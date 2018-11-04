@@ -110,21 +110,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="bFv-D0-L5K">
-                                <rect key="frame" x="40" y="164" width="295" height="63"/>
+                                <rect key="frame" x="40" y="164" width="295" height="65"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type city name here..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Qn-R3-4wz">
                                         <rect key="frame" x="0.0" y="0.0" width="295" height="30"/>
                                         <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1hp-ET-dHT">
-                                        <rect key="frame" x="215" y="35" width="80" height="28"/>
+                                        <rect key="frame" x="215" y="35" width="80" height="30"/>
                                         <color key="backgroundColor" red="0.21313560009002686" green="0.57780492305755615" blue="0.99323540925979614" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="eZ6-qq-nFI"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal" title="Search">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -138,7 +138,7 @@
                                 </constraints>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5Vf-TR-6Vd">
-                                <rect key="frame" x="0.0" y="328.5" width="375" height="338.5"/>
+                                <rect key="frame" x="0.0" y="300" width="375" height="367"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="Ws5-N2-wsT" detailTextLabel="3Wj-A9-1LB" style="IBUITableViewCellStyleValue1" id="Hf6-gd-CUp">
@@ -155,11 +155,11 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3Wj-A9-1LB">
-                                                    <rect key="frame" x="316" y="12" width="44" height="20.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3Wj-A9-1LB">
+                                                    <rect key="frame" x="322.5" y="15" width="37.5" height="17"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -174,32 +174,12 @@
                                     <outlet property="delegate" destination="A5U-v2-DqB" id="fcr-ZH-Thn"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hint" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WGI-S8-anB">
-                                <rect key="frame" x="40" y="278" width="295" height="14.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8La-oN-MKj">
-                                <rect key="frame" x="0.0" y="302.5" width="375" height="16"/>
-                                <fontDescription key="fontDescription" type="italicSystem" pointSize="13"/>
+                                <rect key="frame" x="168" y="239" width="39.5" height="17"/>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="bLH-q9-Oyd">
-                                <rect key="frame" x="93" y="242" width="242" height="31"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select more than one city" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D1V-KC-OC4">
-                                        <rect key="frame" x="0.0" y="0.0" width="185" height="31"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7fo-bg-gJM">
-                                        <rect key="frame" x="193" y="0.0" width="51" height="31"/>
-                                    </switch>
-                                </subviews>
-                            </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="pGe-B6-owq">
                                 <rect key="frame" x="0.0" y="69" width="375" height="18"/>
                                 <subviews>
@@ -218,40 +198,53 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ldJ-7z-Qc5">
-                                <rect key="frame" x="102.5" y="87" width="170" height="28"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <state key="normal" title="Find forecast for where I am"/>
+                                <rect key="frame" x="100" y="87" width="175" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="Find nearest city's forecast"/>
                                 <connections>
                                     <action selector="onSearchByLocationButtonClick:" destination="A5U-v2-DqB" eventType="touchUpInside" id="DpF-q2-FIJ"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="bLH-q9-Oyd">
+                                <rect key="frame" x="211.5" y="249" width="123.5" height="31"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Multiselect" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D1V-KC-OC4">
+                                        <rect key="frame" x="0.0" y="0.0" width="66.5" height="31"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7fo-bg-gJM">
+                                        <rect key="frame" x="74.5" y="0.0" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="onToggleChange:" destination="A5U-v2-DqB" eventType="valueChanged" id="1x1-hA-ASm"/>
+                                        </connections>
+                                    </switch>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <accessibility key="accessibilityConfiguration" label="Add city"/>
                         <constraints>
                             <constraint firstItem="pGe-B6-owq" firstAttribute="leading" secondItem="kVk-xf-doC" secondAttribute="leading" id="3mp-l2-7Cb"/>
+                            <constraint firstItem="kVk-xf-doC" firstAttribute="trailing" secondItem="bLH-q9-Oyd" secondAttribute="trailing" constant="40" id="7Di-Vn-jgg"/>
                             <constraint firstItem="kVk-xf-doC" firstAttribute="trailing" secondItem="bFv-D0-L5K" secondAttribute="trailing" constant="40" id="8b2-yJ-jJZ"/>
-                            <constraint firstItem="kVk-xf-doC" firstAttribute="trailing" secondItem="WGI-S8-anB" secondAttribute="trailing" constant="40" id="AkO-Np-pRX"/>
                             <constraint firstItem="pGe-B6-owq" firstAttribute="centerX" secondItem="M5n-Dg-TXF" secondAttribute="centerX" id="FHy-ha-Sxn"/>
-                            <constraint firstItem="WGI-S8-anB" firstAttribute="top" secondItem="bLH-q9-Oyd" secondAttribute="bottom" constant="5" id="INY-CM-wOv"/>
+                            <constraint firstItem="8La-oN-MKj" firstAttribute="top" secondItem="bFv-D0-L5K" secondAttribute="bottom" constant="10" id="Ik9-6n-QId"/>
                             <constraint firstItem="ldJ-7z-Qc5" firstAttribute="top" secondItem="pGe-B6-owq" secondAttribute="bottom" id="JzC-El-b8x"/>
-                            <constraint firstItem="bLH-q9-Oyd" firstAttribute="top" secondItem="bFv-D0-L5K" secondAttribute="bottom" constant="15" id="Kyq-kb-pKU"/>
+                            <constraint firstItem="8La-oN-MKj" firstAttribute="centerX" secondItem="M5n-Dg-TXF" secondAttribute="centerX" id="KfB-ZT-zpT"/>
                             <constraint firstItem="kVk-xf-doC" firstAttribute="trailing" secondItem="5Vf-TR-6Vd" secondAttribute="trailing" id="N3c-A3-sad"/>
-                            <constraint firstItem="WGI-S8-anB" firstAttribute="centerX" secondItem="M5n-Dg-TXF" secondAttribute="centerX" id="TZU-OV-Ckx"/>
-                            <constraint firstItem="kVk-xf-doC" firstAttribute="trailing" secondItem="bLH-q9-Oyd" secondAttribute="trailing" constant="40" id="UEh-Jd-x1o"/>
                             <constraint firstItem="bFv-D0-L5K" firstAttribute="top" secondItem="M5n-Dg-TXF" secondAttribute="topMargin" constant="100" id="Vd6-Ob-VmD"/>
                             <constraint firstItem="ldJ-7z-Qc5" firstAttribute="centerX" secondItem="M5n-Dg-TXF" secondAttribute="centerX" id="XTP-Gs-JlV"/>
                             <constraint firstItem="bFv-D0-L5K" firstAttribute="centerX" secondItem="M5n-Dg-TXF" secondAttribute="centerX" id="bhB-UT-P8O"/>
+                            <constraint firstItem="bLH-q9-Oyd" firstAttribute="top" secondItem="bFv-D0-L5K" secondAttribute="bottom" constant="20" id="eXU-CU-I31"/>
+                            <constraint firstItem="5Vf-TR-6Vd" firstAttribute="top" secondItem="bLH-q9-Oyd" secondAttribute="bottom" constant="20" id="gcz-KD-IxG"/>
                             <constraint firstItem="kVk-xf-doC" firstAttribute="trailing" secondItem="pGe-B6-owq" secondAttribute="trailing" id="hhl-Nj-4de"/>
                             <constraint firstItem="pGe-B6-owq" firstAttribute="top" secondItem="kVk-xf-doC" secondAttribute="top" constant="5" id="i6e-q7-tKb"/>
                             <constraint firstItem="5Vf-TR-6Vd" firstAttribute="leading" secondItem="kVk-xf-doC" secondAttribute="leading" id="k2q-iJ-zXE"/>
-                            <constraint firstItem="8La-oN-MKj" firstAttribute="centerX" secondItem="M5n-Dg-TXF" secondAttribute="centerX" id="nhh-Le-tLF"/>
                             <constraint firstItem="kVk-xf-doC" firstAttribute="bottom" secondItem="5Vf-TR-6Vd" secondAttribute="bottom" id="nqW-eS-jht"/>
                             <constraint firstItem="bFv-D0-L5K" firstAttribute="leading" secondItem="kVk-xf-doC" secondAttribute="leading" constant="40" id="ohf-72-ylj"/>
-                            <constraint firstItem="kVk-xf-doC" firstAttribute="trailing" secondItem="8La-oN-MKj" secondAttribute="trailing" id="qsH-Bc-V4v"/>
                             <constraint firstItem="5Vf-TR-6Vd" firstAttribute="leading" secondItem="kVk-xf-doC" secondAttribute="leading" id="rxC-fG-pZ6"/>
-                            <constraint firstItem="8La-oN-MKj" firstAttribute="top" secondItem="WGI-S8-anB" secondAttribute="bottom" constant="10" id="wDX-dq-MB2"/>
-                            <constraint firstItem="5Vf-TR-6Vd" firstAttribute="top" secondItem="8La-oN-MKj" secondAttribute="bottom" constant="10" id="xZ2-7P-nGl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kVk-xf-doC"/>
                     </view>
@@ -263,10 +256,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="cityName" destination="0Qn-R3-4wz" id="UcG-pe-Fsn"/>
+                        <outlet property="citySearchField" destination="0Qn-R3-4wz" id="UcG-pe-Fsn"/>
                         <outlet property="currentLocationLabel" destination="fde-62-v87" id="etd-OI-lW0"/>
-                        <outlet property="hintLabel" destination="WGI-S8-anB" id="Ng9-ht-Dhr"/>
                         <outlet property="locationStackView" destination="pGe-B6-owq" id="fud-U4-gHG"/>
+                        <outlet property="multiselectLabel" destination="D1V-KC-OC4" id="iGV-Y6-tAk"/>
                         <outlet property="searchButton" destination="1hp-ET-dHT" id="1iG-Mm-IlW"/>
                         <outlet property="searchByLocationButton" destination="ldJ-7z-Qc5" id="raW-Sm-wPY"/>
                         <outlet property="statusLabel" destination="8La-oN-MKj" id="nnq-ad-Wfa"/>

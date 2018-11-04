@@ -18,7 +18,6 @@ class MapViewController: UIViewController {
         let region = MKCoordinateRegion(center: coordinate, span: span)
  
         let annotation = MKPointAnnotation()
-        annotation.subtitle = "When you are here, weather should be like that"
         annotation.coordinate = coordinate
         
         mapView.setCenter(coordinate, animated: true)
