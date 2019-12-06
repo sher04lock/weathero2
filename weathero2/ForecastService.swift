@@ -18,6 +18,11 @@ class ForecastService {
         self.makeRequest(urlString: "https://www.metaweather.com/api/location/search/?query=\(query)", callback: callback)
     }
     
+    func findCities2(name query: String, completion: @escaping (Any?) -> Void) {
+        print("NEW!!!! Looking for city matching \(query)")
+        self.makeRequest2(urlString: "https://www.metaweather.com/api/location/search/?query=\(query)", completion: completion)
+    }
+    
     func findCities(coordinate: CLLocationCoordinate2D, callback: @escaping (Data?, URLResponse?, Error?) -> Void) {
         print("Looking for city near \(coordinate)")
         let latt_long = "\(coordinate.latitude),\(coordinate.longitude)"
@@ -36,21 +41,27 @@ class ForecastService {
         }
     }
     
-    private func makeRequest2(urlString: String, callback: @escaping (Data?, URLResponse?, Error?) -> Void) {
+    public func makeRequest2(urlString: String, completion: @escaping (Any?) -> Void) {
         if let escapedString = urlString.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed) {
             let url = URL(string: escapedString)!
             Alamofire.request(
                 url,
                 method: .get
             )
-            
-            
-            let session = URLSession.shared
-            let request = URLRequest(url: url)
-            
-            let task = session.dataTask(with: request as URLRequest, completionHandler: callback)
-            
-            task.resume()
+            .validate()
+                .responseJSON { response in
+                    guard response.result.isSuccess else {
+                        print("Error while fetching data")
+                            completion(nil)
+                        return
+                    }
+                    
+                    let value = response.result.value;
+                    
+                    print(value);
+                    
+                    completion(value)
+            }
         }
     }
 }

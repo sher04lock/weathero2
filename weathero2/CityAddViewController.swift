@@ -49,6 +49,9 @@ class CityAddViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         let forecastService = ForecastService()
         forecastService.findCities(name: self.citySearchField.text!, callback: onDataFetched)
+        forecastService.findCities2(name: self.citySearchField.text!) { value in
+            print(value)
+        }
     }
     
     @IBAction func onToggleChange(_ sender: UISwitch) {
