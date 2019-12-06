@@ -17,10 +17,12 @@
 		7F60C8A6217BBF1C00885AD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F60C8A5217BBF1C00885AD8 /* Assets.xcassets */; };
 		7F60C8A9217BBF1C00885AD8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F60C8A7217BBF1C00885AD8 /* LaunchScreen.storyboard */; };
 		7F60C8B1217BCCBD00885AD8 /* CityAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F60C8B0217BCCBD00885AD8 /* CityAddViewController.swift */; };
+		89C9DF3A49831611A086E6D7 /* Pods_weathero2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC412AA44CA750D33844F90C /* Pods_weathero2.framework */; };
 		98E13E6B218E037200665FBB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E13E6A218E037200665FBB /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		11030426A3DCE63818769B0A /* Pods-weathero2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-weathero2.release.xcconfig"; path = "Pods/Target Support Files/Pods-weathero2/Pods-weathero2.release.xcconfig"; sourceTree = "<group>"; };
 		7F39E8512180E7DC0077EB65 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		7F39E8532180F7EF0077EB65 /* models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = models.swift; sourceTree = "<group>"; };
 		7F39E8552180F8EB0077EB65 /* ForecastService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastService.swift; sourceTree = "<group>"; };
@@ -34,6 +36,8 @@
 		7F60C8AA217BBF1C00885AD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7F60C8B0217BCCBD00885AD8 /* CityAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityAddViewController.swift; sourceTree = "<group>"; };
 		98E13E6A218E037200665FBB /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		C4F566E2B95AD749847BF8E6 /* Pods-weathero2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-weathero2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-weathero2/Pods-weathero2.debug.xcconfig"; sourceTree = "<group>"; };
+		EC412AA44CA750D33844F90C /* Pods_weathero2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_weathero2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89C9DF3A49831611A086E6D7 /* Pods_weathero2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,6 +57,8 @@
 			children = (
 				7F60C89B217BBF1A00885AD8 /* weathero2 */,
 				7F60C89A217BBF1A00885AD8 /* Products */,
+				C65FF095700E96549A8DA42B /* Pods */,
+				C02FFF648529DCB696EBAE74 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -82,6 +89,23 @@
 			path = weathero2;
 			sourceTree = "<group>";
 		};
+		C02FFF648529DCB696EBAE74 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EC412AA44CA750D33844F90C /* Pods_weathero2.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C65FF095700E96549A8DA42B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C4F566E2B95AD749847BF8E6 /* Pods-weathero2.debug.xcconfig */,
+				11030426A3DCE63818769B0A /* Pods-weathero2.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -89,9 +113,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7F60C8AD217BBF1C00885AD8 /* Build configuration list for PBXNativeTarget "weathero2" */;
 			buildPhases = (
+				F4F65A459BCC35AFC8C3D393 /* [CP] Check Pods Manifest.lock */,
 				7F60C895217BBF1A00885AD8 /* Sources */,
 				7F60C896217BBF1A00885AD8 /* Frameworks */,
 				7F60C897217BBF1A00885AD8 /* Resources */,
+				E98EEEAE778BCA840E897ED3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -147,6 +173,53 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E98EEEAE778BCA840E897ED3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-weathero2/Pods-weathero2-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-weathero2/Pods-weathero2-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F4F65A459BCC35AFC8C3D393 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-weathero2-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7F60C895217BBF1A00885AD8 /* Sources */ = {
@@ -304,6 +377,7 @@
 		};
 		7F60C8AE217BBF1C00885AD8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C4F566E2B95AD749847BF8E6 /* Pods-weathero2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
@@ -323,6 +397,7 @@
 		};
 		7F60C8AF217BBF1C00885AD8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 11030426A3DCE63818769B0A /* Pods-weathero2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;

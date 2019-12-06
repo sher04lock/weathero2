@@ -1,5 +1,6 @@
 import Foundation
 import CoreLocation
+import Alamofire
 
 let WARSAW_WOEID = 523920
 let BERLIN_WOEID = 638242
@@ -26,6 +27,24 @@ class ForecastService {
     private func makeRequest(urlString: String, callback: @escaping (Data?, URLResponse?, Error?) -> Void) {
         if let escapedString = urlString.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed) {
             let url = URL(string: escapedString)!
+            let session = URLSession.shared
+            let request = URLRequest(url: url)
+            
+            let task = session.dataTask(with: request as URLRequest, completionHandler: callback)
+            
+            task.resume()
+        }
+    }
+    
+    private func makeRequest2(urlString: String, callback: @escaping (Data?, URLResponse?, Error?) -> Void) {
+        if let escapedString = urlString.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed) {
+            let url = URL(string: escapedString)!
+            Alamofire.request(
+                url,
+                method: .get
+            )
+            
+            
             let session = URLSession.shared
             let request = URLRequest(url: url)
             
