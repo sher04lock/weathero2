@@ -7,5 +7,6 @@ target 'weathero2' do
 
   # Pods for weathero2
   pod 'Alamofire', '4.4.0'
+  pod 'MBProgressHUD', '~> 1.0'
 
 end

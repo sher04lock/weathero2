@@ -1,5 +1,6 @@
 import UIKit
 import CoreLocation
+import MBProgressHUD
 
 class CityAddViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
     
@@ -49,9 +50,20 @@ class CityAddViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         let forecastService = ForecastService()
         forecastService.findCities(name: self.citySearchField.text!, callback: onDataFetched)
+        showLoadingHUD()
         forecastService.findCities2(name: self.citySearchField.text!) { value in
             print(value)
+            self.hideLoadingHUD()
         }
+    }
+    
+    private func showLoadingHUD() {
+        let hud = MBProgressHUD.showAdded(to: citySearchField, animated: true)
+        hud.label.text = "Loading..."
+    }
+    
+    private func hideLoadingHUD() {
+        MBProgressHUD.hide(for: citySearchField, animated: true)
     }
     
     @IBAction func onToggleChange(_ sender: UISwitch) {
