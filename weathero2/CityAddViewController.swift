@@ -1,6 +1,7 @@
 import UIKit
 import CoreLocation
 import MBProgressHUD
+import Alamofire
 
 class CityAddViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
     
@@ -49,21 +50,22 @@ class CityAddViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.pending()
         
         let forecastService = ForecastService()
-        forecastService.findCities(name: self.citySearchField.text!, callback: onDataFetched)
+        //forecastService.findCities(name: self.citySearchField.text!, callback: onDataFetched)
+        
         showLoadingHUD()
-        forecastService.findCities2(name: self.citySearchField.text!) { value in
-            print(value)
+        forecastService.searchCities(name: self.citySearchField.text!) { value in
             self.hideLoadingHUD()
+            self.onDataFetchedFromAlamofire(value)
         }
     }
     
     private func showLoadingHUD() {
-        let hud = MBProgressHUD.showAdded(to: citySearchField, animated: true)
+        let hud = MBProgressHUD.showAdded(to: tableView, animated: true)
         hud.label.text = "Loading..."
     }
     
     private func hideLoadingHUD() {
-        MBProgressHUD.hide(for: citySearchField, animated: true)
+        MBProgressHUD.hide(for: tableView, animated: true)
     }
     
     @IBAction func onToggleChange(_ sender: UISwitch) {
@@ -106,7 +108,8 @@ class CityAddViewController: UIViewController, UITableViewDelegate, UITableViewD
                 return
         }
         
-        saveFoundCities(data: data)
+        let json = parseDataToJSON(data: data);
+        saveFoundCities(json: json)
         
         DispatchQueue.main.async {
             self.loadingFinished()
@@ -114,12 +117,32 @@ class CityAddViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
-    func saveFoundCities(data: Data) {
+    func onDataFetchedFromAlamofire(_ data: [[String: Any]]) -> Void {
+        saveFoundCities(json: data)
+        
+        DispatchQueue.main.async {
+            self.loadingFinished()
+            self.updateView()
+        }
+    }
+    
+    func parseDataToJSON(data: Data) -> [[String: Any]] {
+        var jsonArray: [[String: Any]]
         do {
-            self.foundCities = []
             if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [[String: Any]] {
-                
-                for case let cityJSON in json {
+                jsonArray = json
+                return jsonArray;
+            }
+            return []
+        } catch let error {
+            print(error.localizedDescription)
+            return []
+        }
+    }
+    
+    func saveFoundCities(json: [[String: Any]]) {
+        
+        for case let cityJSON in json {
                     if let foundCity = CityModel(json: cityJSON) {
                         print("adding city \(foundCity.name)")
                         self.foundCities.append(foundCity)
@@ -128,10 +151,6 @@ class CityAddViewController: UIViewController, UITableViewDelegate, UITableViewD
                 print ("found cities saved")
                 
             }
-        } catch let error {
-            print(error.localizedDescription)
-        }
-    }
     
     func updateView() {
         if self.foundCities.isEmpty {

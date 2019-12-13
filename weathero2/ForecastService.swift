@@ -18,9 +18,10 @@ class ForecastService {
         self.makeRequest(urlString: "https://www.metaweather.com/api/location/search/?query=\(query)", callback: callback)
     }
     
-    func findCities2(name query: String, completion: @escaping (Any?) -> Void) {
+    // This one is using alamofire
+    func searchCities(name query: String, completion: @escaping ([[String: Any]]) -> Void) {
         print("NEW!!!! Looking for city matching \(query)")
-        self.makeRequest2(urlString: "https://www.metaweather.com/api/location/search/?query=\(query)", completion: completion)
+        self.makeRequestWithAlamofire(urlString: "https://www.metaweather.com/api/location/search/?query=\(query)", completion: completion)
     }
     
     func findCities(coordinate: CLLocationCoordinate2D, callback: @escaping (Data?, URLResponse?, Error?) -> Void) {
@@ -40,8 +41,8 @@ class ForecastService {
             task.resume()
         }
     }
-    
-    public func makeRequest2(urlString: String, completion: @escaping (Any?) -> Void) {
+   
+    public func makeRequestWithAlamofire(urlString: String, completion: @escaping ([[String: Any]]) -> Void) {
         if let escapedString = urlString.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed) {
             let url = URL(string: escapedString)!
             Alamofire.request(
@@ -52,13 +53,11 @@ class ForecastService {
                 .responseJSON { response in
                     guard response.result.isSuccess else {
                         print("Error while fetching data")
-                            completion(nil)
+                            completion([])
                         return
                     }
                     
-                    let value = response.result.value;
-                    
-                    print(value);
+                    let value = response.result.value as! [[String: Any]];
                     
                     completion(value)
             }

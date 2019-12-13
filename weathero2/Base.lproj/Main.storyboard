@@ -263,7 +263,7 @@
                         <outlet property="searchButton" destination="1hp-ET-dHT" id="1iG-Mm-IlW"/>
                         <outlet property="searchByLocationButton" destination="ldJ-7z-Qc5" id="raW-Sm-wPY"/>
                         <outlet property="statusLabel" destination="8La-oN-MKj" id="nnq-ad-Wfa"/>
-                        <outlet property="tableView" destination="5Vf-TR-6Vd" id="Gwf-AB-5qN"/>
+                        <outlet property="tableView" destination="5Vf-TR-6Vd" id="nEE-kp-Cis"/>
                         <outlet property="toggleStack" destination="bLH-q9-Oyd" id="UfC-Wi-j2g"/>
                         <outlet property="toggleSwitch" destination="7fo-bg-gJM" id="zXn-EV-eM7"/>
                     </connections>
