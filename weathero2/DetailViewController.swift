@@ -1,5 +1,5 @@
 import UIKit
-
+import ISPageControl
 
 class DetailViewController: UIViewController {
     
@@ -18,6 +18,8 @@ class DetailViewController: UIViewController {
     
     @IBOutlet weak var previousButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
+    
+    @IBOutlet weak var pageIndicator: ISPageControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,11 +84,13 @@ class DetailViewController: UIViewController {
     
     @IBAction func goToPrevious(_ sender: Any) {
         currentWeatherIndex = currentWeatherIndex - 1
+        pageIndicator.currentPage = currentWeatherIndex;
         updateView()
     }
     
     @IBAction func goToNext(_ sender: Any) {
         currentWeatherIndex = currentWeatherIndex + 1
+        pageIndicator.currentPage = currentWeatherIndex;
         updateView()
     }
 }
